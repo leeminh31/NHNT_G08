@@ -1,0 +1,151 @@
+﻿@model Pagination<Phong>
+
+@section Style {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
+
+<!-- Phần thân trang web -->
+<div class="main">
+    <fieldset class="fieldset_item" id="fieldset_item-mienbac">
+        <legend class="fieldset_item-title">
+            <a href="" id="">****** Thông tin phòng trọ *****</a>
+        </legend>
+        <div class="grid item">
+
+            @foreach (var phong in Model)
+            {
+                <div class="grid_col_4 item_travel">
+                    <a href="">
+                        <div class="item_travel-item1" style="background-image: url('/img/anhtro/anh1.jpg');"></div>
+                    </a>
+                    <div class="item_travel-item2">
+                        <div class="item_travel-item2-con">
+                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                            <i class="item_travel-item2-icon fa-sharp fa-regular fa-star"></i>
+
+                            <span class="item_travel-item2-con-price">@phong.giaPhong.ToString("#,#") Đ</span>
+                        </div>
+                        <a href="" class="item_travel-item2-title">@phong.tenPhong</a>
+
+                        <div class="item_travel-item2-info">
+                            <div>
+                                <p>
+                                    <i class="fa-sharp fa-solid fa-location-dot"></i>
+                                    <span class="travel-item2-info--span">Địa chỉ: @phong.diaChi</span>
+                                </p>
+                                <p>
+                                    <i class="fa-sharp fa-solid fa-bolt"></i>
+                                    <span class="travel-item2-info--span">Giá điện: @phong.giaDien.ToString("#,#") Đ</span>
+                                </p>
+                                <p>
+                                    <i class="fa-sharp fa-solid fa-droplet"></i>
+                                    <span class="travel-item2-info--span">Giá nước: @phong.giaNuoc.ToString("#,#") Đ</span>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @{
+                var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+            <div class="m-auto pt-3">
+                <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
+                    Previous
+                </a>
+
+                <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex +1)" class="btn btn-primary @nextDisabled">
+                    Next
+                </a>
+            </div>
+
+
+        </div>
+
+    </fieldset>
+
+    <br><br><br>
+
+    <div class="grid">
+        <p style="color:rgb(43, 172, 17);font-size: 27px;margin: 30px 0;">Top Phòng Có Đánh Giá Cao Nhất</p>
+        <div class="news">
+
+            <div class="grid_col_3 travel_news">
+                <a href="">
+                    <div class="travel_news-item1" style="background-image: url('https://recmiennam.com/wp-content/uploads/2018/01/hinh-anh-vinh-ha-long-1.jpg');"></div>
+                </a>
+                <div class="travel_news-item2">
+
+                    <a href="" class="travel-news-title">Bạn muốn biết thêm về Hội An</a>
+
+                    <a href="" class="travel-item2-detail">
+                        <p style="">
+                            Nếu được một lần đặt chân đến vùng đất miến trung thân thương, xin hãy ghé thăm phố cổ hội an, dành thời gian
+                            để tận hưởng khám phá rọn vẹn vẻ đẹp và văn hóa nơi đây.....
+                        </p>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid_col_3 travel_news">
+                <a href="">
+                    <div class="travel_news-item1" style="background-image: url('https://kenh14cdn.com/thumb_w/660/2020/7/30/photo-1-15960830616942085771134.jpg');"></div>
+                </a>
+                <div class="travel_news-item2">
+
+                    <a href="" class="travel-news-title">Bạn muốn biết thêm về Hội An</a>
+
+                    <a href="" class="travel-item2-detail">
+                        <p>
+                            Nếu được một lần đặt chân đến vùng đất miến trung thân thương, xin hãy ghé thăm phố cổ hội an, dành thời gian
+                            để tận hưởng khám phá rọn vẹn vẻ đẹp và văn hóa nơi đây.....
+                        </p>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid_col_3 travel_news">
+                <a href="">
+                    <div class="travel_news-item1" style="background-image: url('https://afamilycdn.com/2020/1/25/photo-1579917193675-15799171936821461273161.png');"></div>
+                </a>
+                <div class="travel_news-item2">
+
+                    <a href="" class="travel-news-title">Bạn muốn biết thêm về Hội An</a>
+
+                    <a href="" class="travel-item2-detail">
+                        <p>
+                            Nếu được một lần đặt chân đến vùng đất miến trung thân thương, xin hãy ghé thăm phố cổ hội an, dành thời gian
+                            để tận hưởng khám phá rọn vẹn vẻ đẹp và văn hóa nơi đây.....
+                        </p>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <p style="color:rgb(43, 172, 17);font-size: 27px;margin: 30px 0;">Biết hơn về HALOTRAVEL</p>
+        <p style="padding: 10px; text-align: justify;">
+            Tính đến hết năm 2014, Việt Nam có 28 lễ hội được đưa vào danh mục Di sản văn hóa phi vật thể cấp quốc gia gồm:
+            Hội Gióng đền Phù Đổng và đền Sóc (Hà Nội), Lễ hội Yên Thế (Bắc Giang), Lễ hội Đền Đô (Bắc Ninh), Lễ hội Nhảy lửa
+            của người Pà Thẻn (Hà Giang), Lễ hội Côn Sơn (Hải Dương), Lễ hội Kiếp Bạc (Hải Dương), Lễ hội Chọi trâu Đồ Sơn (Hải Phòng),
+            Lễ hội Cầu Ngư ở Khánh Hòa (Khánh Hòa), Lễ hội Gầu Tào (Lào Cai, Hà Giang), Lễ hội Kỳ Yên ở đình Gia Lộc (Tây Ninh), Lễ hội
+            Tháp Bà (Ponagar) Nha Trang (Khánh Hòa), Lễ hội Lồng Tông của người Tày (Tuyên Quang).[25]. Lễ hội Phủ Dầy, xã Kim Thái,
+            huyện Vụ Bản, tỉnh Nam Định; Hội Lim, Tiên Du,Bắc Ninh,Lễ hội Nghinh Ông, huyện Cần Giờ, Thành phố Hồ Chí Minh. Lễ hội Roóng
+            poọc của người Giáy (Tả Van, Sa Pa, Lào Cai) và Lễ Pút tồng của người Dao đỏ (Sa Pa, Lào Cai). Lễ hội Đền Trần Nam Định, Lễ
+            hội Hoa Lư Ninh Bình, Lễ hội miếu Bà Chúa Xứ núi Sam An Giang, Lễ hội Lồng tồng Ba Bể Bắc Kạn, Lễ hội làng Lệ Mật Hà Nội,
+
+        </p>
+    </div>
+
+</div>

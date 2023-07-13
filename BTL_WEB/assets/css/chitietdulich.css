@@ -1,0 +1,53 @@
+
+.main_detail{
+    padding-left: 7px;
+}
+
+.main_detail-title{
+    color:rgb(107, 192, 37);
+    padding: 10px 0;
+}
+
+.main_detail--title{
+    text-align: justify;
+    padding: 20px 0;
+}
+
+.main_detail--small{
+    color :rgb(107, 192, 37);
+    font-weight: 600;
+    padding-top:40px;
+}
+
+.main_detail-img{
+    position: relative;
+    padding-top: 80%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-top: 30px;
+}
+
+.main_detail_content{
+    text-align: justify;
+}
+
+.main_right{
+    margin-top: 80px;
+    margin-left: 35px;
+}
+
+.main_right-title{
+    border: 2px solid rgb(107, 192, 37);
+    padding: 5px;
+    position: relative;
+   
+}
+
+.main_right-title h4{
+    color :rgb(107, 192, 37);
+}
+
+
+
+

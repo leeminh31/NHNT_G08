@@ -1,0 +1,384 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+    font-family:'Open Sans', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.header{
+    position: relative;
+    background-image: url('./anhtro/anhchung.png');
+    padding-top: 42%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* width: 100%;
+    height: 500px; */
+}   
+
+.header_menu{
+    position: absolute;
+    top : 0;
+    background-color: rgba(1,127,255,0.8);
+    width: 100%;
+    height: 100px;
+    display: flex;
+    /* position: fixed; */
+    z-index: 10;
+}
+
+.active{
+    background-color: #3499FF;
+}
+
+.logo{
+    margin-left: 50px;
+    width: 100px;
+}
+
+.menu_list{
+    display: flex;
+    margin-left: 100px;
+}
+
+.menu_list-item{
+    position: relative;
+    list-style: none;
+    color:white;
+    font-size: 20px;
+    padding:0 50px;
+    line-height: 100px;
+    cursor: pointer;
+}
+
+.menu_list-item:nth-child(1){
+    color:rgb(91, 250, 58);
+}
+
+.menu_list-item-nth1{
+    color:rgb(91, 250, 58) !important;
+}
+
+.menu_list-item:hover{
+    color:  rgb(91, 250, 58);
+}
+
+.menu_list-item-link{
+    text-decoration: none;
+    color:white;
+
+}
+
+.menu_list-item-link:hover{
+    color:  rgb(91, 250, 58);
+}
+
+.menu_list-hot{
+    margin-top: 30px;
+}
+
+.menu_list-hotline{ 
+    color: white;
+    font-size: 18px;
+}
+
+/* xu ly khi có tài khoản */
+
+.menu_list-hot p{
+    color: white;
+}
+
+.none{
+    display: none;
+}
+
+.control_account{
+    color: white;
+    text-decoration: none;
+}
+
+.dangxuat{
+    color: white;
+    text-decoration: none;
+}
+/* ------------- */
+
+.menu_list-item-sub{
+    position: absolute;
+    display: none;
+    z-index: 10;
+}
+
+.menu_list-item:hover .menu_list-item-sub{
+    display: block;
+}
+
+.menu_list-item-sub li{
+    display: block;
+    list-style: none;
+    line-height: 60px;
+    width: 160px;
+    background-color: rgb(91, 250, 58);
+    padding-left: 50px;
+}
+
+
+.menu_list-item-sub li a{
+    text-decoration: none;
+    color: white;
+}
+
+.menu_list-item-sub li:hover{
+    background-color: rgb(49, 199, 19);
+}
+
+.header_title{
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    background-color: rgb(1, 127, 255, 0.4);
+    padding: 40px 50px;
+}
+
+.header_title-item{
+    color : white;
+    
+    font-size: 35px;
+}
+
+/*------------------------------- Main ------------*/
+/* .main_one{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.main_logo{
+    width: 200px;
+}
+
+hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(91, 250, 58);
+}
+
+.main_one-sub{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    padding-left: 60px;
+}
+
+.main_one-sub-item{
+    padding: 50px;
+}
+
+.main_one-sub-protect1{
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid rgb(91, 250, 58);
+    padding: 10px;
+}
+
+.main_one-sub-title{
+    color:rgb(61, 223, 28);
+}
+
+.main_one-sub-itemend{
+    margin-left: -30px;
+}
+
+
+/* item_travel */
+
+.fieldset_item{
+    border-color: #017FFF;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    /* margin-top: 50px; */
+}
+
+.fieldset_item-title {
+    text-align: center;
+    font-size: 25px;
+}
+
+.fieldset_item-title a{
+    text-decoration: none;
+    color: #017FFF;
+}
+
+.item{
+    padding-top: 30px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item_travel{
+    position: relative;
+    border: 1px solid rgb(1, 127, 255);
+    margin-left: 5px;
+}
+
+.item_travel-item1{
+    padding-top: 95%;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.item_travel-item2-con{
+    padding-bottom: 10px;
+}
+
+.item_travel-item2{
+    padding: 10px 5px;
+    margin-top: 10px;
+}
+
+.item_travel-item2-icon{
+    color: yellow;
+}
+
+.item_travel-item2-con-price{
+    float: right;
+    color:rgb(33, 105, 199);
+    font-weight: 700;
+}
+
+.item_travel-item2-title{
+    font-weight: 550;
+    font-size: 18px;
+    color: rgb(233, 13, 24);
+    text-decoration: none;
+}
+
+.item_travel-item2-info{
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+}
+
+.item_travel-item2-info2{
+    position: relative;
+    margin: auto;
+    display: block;
+    float: right;
+}
+
+p{
+    line-height: 25px;
+}
+
+.item_travel-item2-info2 a{
+    color: white;
+    text-decoration: none;
+    font-weight: 550;
+    background-color:rgb(1, 127, 255);
+    padding: 5px 10px;
+}
+
+.item_travel-item2-info2 a::after{
+    content: "";
+    right: -35px;
+    top: -10px;
+    position: absolute;
+    border-width: 19px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgb(1, 127, 255);
+}
+
+.see_more{
+    width: 100px; 
+    margin: 20px auto;
+}
+
+.see_more a{
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* -------News ---------*/
+
+.news{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.travel_news{
+    position: relative;
+    border: 1px solid rgb(91, 250, 58);
+    margin-left: 5px;
+}
+
+.travel_news-item1{
+    padding-top: 95%;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.travel_news-item2{
+    padding: 10px 5px;
+    margin-top: 10px;
+}
+
+.travel-news-title{
+    font-weight: 550;
+    font-size: 18px;
+    color: rgb(233, 13, 24);
+    text-decoration: none;
+}
+
+.travel-item2-detail{
+    text-decoration: none;
+}
+
+
+.travel-item2-detail p{
+    text-align: justify;
+}
+
+
+/* -------------------------------------footer---------------- */
+
+footer{
+    margin-top: 100px;
+    
+}
+
+.footer{
+   flex-wrap: wrap;
+    display: flex;
+    padding-bottom: 50px;
+}
+
+.footer_col_1{
+    padding-left: 10px;
+}
+
+.footer_col_1-title{
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.grid_col_3-double{
+    display: flex;
+   
+}
+
+

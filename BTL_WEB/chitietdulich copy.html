@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/index.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/chitietdulich.css">
+    <link rel="stylesheet" href="./assets/css/themtk.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+   <div id="web"> 
+       <!-- phần đầu trang web -->
+        <header class="header" style="background-image: url('./img/cauvang.jpg');">
+            <!-- menu -->
+            <div class="header_menu">
+                <a href="index.html"><img src="./assets/img/Logo200.png" alt="" class="logo"></a>
+                <ul class="menu_list">
+                    <li class="menu_list-item">
+                        <a href="" class="menu_list-item-link menu_list-item-nth1">ĐIỂM ĐẾN</a>
+                        <ul class="menu_list-item-sub">
+                            <li>
+                                <a href="">MIỀN BẮC</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN TRUNG</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN NAM</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu_list-item">
+                        <a href="" class="menu_list-item-link">TIN TỨC</a>
+                        <ul class="menu_list-item-sub">
+                            <li>
+                                <a href="">MIỀN BẮC</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN TRUNG</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN NAM</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu_list-item">
+                        <a href="" class="menu_list-item-link">DỊCH VỤ</a>
+                    </li>
+                    <li class="menu_list-item">
+                        <a href="" class="menu_list-item-link">ĐĂNG KÍ</a>
+                    </li>
+                    <li class="menu_list-item">
+                        <a href="" class="menu_list-item-link">ĐĂNG NHẬP</a>
+                    </li>
+                   
+                    <div class="menu_list-hot">
+                        <div class="menu_list-hotline">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            1900 6543
+                        </div>
+                        <div class="menu_list-hotline">
+                            <i class="far fa-handshake"></i>
+                            HỢP TÁC VỚI CHÚNG TÔI
+                        </div>
+                    </div>
+
+                </ul>
+            </div>
+
+            <div class="header_title">
+                <span class="header_title-item">
+                    <i>
+                        TRẢI NGHIỆM KÌ QUAN TUYỆT VỜI TẠI HALO TRAVEL
+                    </i>
+                    
+                </span>
+            </div>
+
+        </header>
+
+        <!-- Phần thân trang web -->
+        <div class="main">
+            
+           <center>
+                <h1 class="title_quanly">Quản lý tài khoản</h1>
+           </center>
+          
+            <form action="">
+                <div class="grid form_themtk">
+                    <div class="form_input">
+                        <label for="" class="lable lable_hoten">Họ tên</label>
+                        <input type="text" name="hoten" id="hoten" class="input">
+                    </div>
+
+                    <div class="form_input">
+                        <label for="" class="lable lable_tentaikhoan">Tên tài khoản</label>
+                        <input type="text" name="tentaikhoan" id="tentaikhoan" class="input">
+                    </div>
+
+                    <div class="form_input">
+                        <label for="" class="lable lable_matkhau">Mật khẩu</label>
+                        <input type="text" name="matkhau" id="matkhau" class="input">
+                    </div>
+
+                </div>  
+
+                <div class="grid">
+                    <div class="button_them">
+                        <button class="btn btn_them" id="btn_them" name="btn_them">Thêm tài khoản</button>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <label for="" class="lable">Tìm kiếm theo tên</label>
+                    <div class="form_input">
+                        <input type="text" name="hoten" id="hoten" class="input">
+                        <button class="btn btn_timkiem" value="timkiem" name="timkiem" id="tiemkiem">Tìm kiếm</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+            <div class="grid table">
+                <table class="table_taikhoan">
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Tên tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Tác vụ</th>
+                        </tr>
+
+
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bùi Thị Yên</td>
+                                <td>admin@gmail.com</td>
+                                <td>987654321</td>
+                                <td>
+                                    <button class="btn_xoa" name="btn_xoa" value="xoa" id="btn_xoa" type="submit">Xóa</button>
+                                </td>
+                            </tr>
+    
+                            <tr>
+                                <td>1</td>
+                                <td>Bùi Thị Yên</td>
+                                <td>admin@gmail.com</td>
+                                <td>987654321</td>
+                                <td>
+                                    <button class="btn_xoa">Xóa</button>
+                                </td>
+                            </tr>
+    
+                            <tr>
+                                <td>1</td>
+                                <td>Bùi Thị Yên</td>
+                                <td>admin@gmail.com</td>
+                                <td>987654321</td>
+                                <td>
+                                    <button class="btn_xoa">Xóa</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    
+                       
+
+                  
+                </table>
+            </div>
+                   
+                  
+        </div>
+
+        
+        <!-- footer trang web -->
+        <footer>
+             <hr>
+            <div class="grid footer">
+                <div class="grid_col_3 footer_col_1">
+                    <h3 class="footer_col_1-title">CÔNG TY TT DU LỊCH HALOTRAVEL</h3>
+                    <p>Trụ sở chính :96 Định Công,Phương Liệt, Thanh Xuân, Hà Nội </p>
+                    <p>Chi nhánh Hà Nội : 101 Nguyễn Hiền, Bách Khoa, Hai Bà Trưng, Hà Nội</p>
+                    <p>Điện thoại : 0964 154 302 | Hotline: 1900 9876</p>
+                    <p>Website : halotravel.com.vn</p>
+                    <p>Email: halo@gmail.com</p>
+                </div>
+
+                <div class="grid_col_3 footer_col_1 grid_col_3-double">
+                   <div>
+                        <h3 class="footer_col_1-title">Khách hàng</h3>
+                        <p>Chính sách đặt tour</p>
+                        <p>Ý kiến khách hàng</p>
+                        <p>Phiếu góp ý</p>
+
+                   </div>
+                   <div style="padding-left: 50px;">
+                    <h3 class="footer_col_1-title">Chứng nhận</h3>
+                        <img src="./assets/img/tem1.png" alt="">
+                        <img src="./assets/img/tem2.png" alt="">
+                   </div>
+                </div>
+
+                <div class="grid_col_3 footer_col_1">
+                    <h3 class="footer_col_1-title">Thông tin khuyến mãi từ công ty</h3>
+                    <p>Những dịch vụ tiện ích khác</p>
+                    <p>Chăm sóc khách hàng chu đáo tận tình</p>
+                    <p>Chúng tôi thấu hiểu từ bạn</p>
+                </div>
+
+            </div>
+        </footer>
+   </div>
+
+
+    <script>
+      const content = document.querySelector(".header_menu");
+      document.querySelector("body").onscroll = () => {
+        if (window.pageYOffset > 700) {
+          content.classList.add("active");
+        } else {
+          content.classList.remove("active");
+        }
+      };
+
+    </script>
+
+</body>
+</html>

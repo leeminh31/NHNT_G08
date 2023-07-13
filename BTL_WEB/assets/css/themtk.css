@@ -1,0 +1,65 @@
+
+.title_quanly{
+    margin-top: 50px;
+    color:rgb(17, 119, 46);
+}
+
+.form_themtk{
+    margin-top: 50px;
+    display: flex;
+}
+
+.form_input{
+    padding: 0 30px;
+}
+
+.lable{
+    color:rgb(17, 119, 46);
+    font-size: 20px;
+}
+
+.input{
+    
+    width: 300px;
+    height: 20px;
+}
+
+.button_them{
+    margin: 15px 30px;
+    
+}
+
+.btn{
+    padding: 8px;
+    background-color: rgb(18, 102, 30);
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+table, th, td{
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+
+table{
+    border-collapse:collapse;
+    width:100%;
+}
+
+th, td{
+    text-align:left;
+    padding:10px;
+}
+
+.table{
+    margin-top: 50px;
+}
+
+.btn_xoa{
+    background-color: rgb(240, 43, 43);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}

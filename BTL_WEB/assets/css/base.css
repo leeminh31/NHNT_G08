@@ -1,0 +1,72 @@
+
+.grid{
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.grid_col_3{
+    width: 32%;
+}
+
+.grid_col_4{
+    width: 24%;
+}
+
+.grid_col_9{
+    width: 65%;
+}
+
+/* reponsive */
+
+@media (max-width:1024px) and (min-width: 740px){
+    .header_menu{
+        display: none;
+    }
+
+    .header_title{
+        display: none;
+    }
+
+    .grid_col_4{
+        width: 48%;
+    }
+
+    .footer_col_1{
+         width: 40%;
+    }
+
+    .travel_news{
+        width: 48%;
+    }
+}
+
+@media (max-width: 740px){
+    .header_menu{
+        display: none;
+    }
+
+    .header_title{
+        display: none;
+    }
+
+    .grid_col_4{
+        width: 98%;
+    }
+
+    .travel_news{
+        width: 98%;
+    }
+
+    .footer_col_1{
+         width: 80%;
+    }
+}
+
+
+
+
+
+
+
+
+
