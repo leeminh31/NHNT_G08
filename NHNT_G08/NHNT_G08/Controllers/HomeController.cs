@@ -21,7 +21,13 @@ namespace NHNT_G08.Controllers
         public async Task<IActionResult> Index(int? pageIndex)
         {
             int pageSize = 12;
-            return View(Pagination<Phong>.Create(await LaySoSaoTrungBinh(5), pageIndex ?? 1,pageSize));
+            var listPhong = await _context.tblPhong.ToListAsync();
+            foreach (var phong in listPhong)
+            {
+                var taiKhoan = _context.tblTaiKhoan.First(p=> p.maTaiKhoan == phong.maTaiKhoan);
+                phong.tenNguoiDang = taiKhoan.hoTenNguoiDung;
+            }
+            return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1,pageSize));
         }
 
         public async Task<IActionResult> DanhGia (int? pageIndex)

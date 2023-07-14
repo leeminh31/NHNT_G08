@@ -90,6 +90,10 @@
                                     <i class="fa-sharp fa-solid fa-droplet"></i>
                                     <span class="travel-item2-info--span">Giá nước: @phong.giaNuoc.ToString("#,#") Đ</span>
                                 </p>
+                                <p>
+                                    <i class="fa-solid fa-user"></i>
+                                    <span class="travel-item2-info--span">Người đăng bài: @phong.tenNguoiDang</span>
+                                </p>
                             </div>
 
                             @*<div class="item_travel-item2-info2">
@@ -101,12 +105,14 @@
                 </div>
             }
 
-            @{
-                var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
-                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-            }
 
-        <div class="m-auto pt-3">
+        </div>
+        @{
+            var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+
+        <div class="page">
             <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
                 Previous
             </a>
@@ -115,10 +121,6 @@
                 Next
             </a>
         </div>
-            
-
-        </div>
-
     </fieldset>
 
     <br><br><br>

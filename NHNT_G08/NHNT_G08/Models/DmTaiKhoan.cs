@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace NHNT_G08.Models
 {
-    public class DanhGiaPhong
+    public class DmTaiKhoan
     {
         [Key]
-        public int maPhong { get; set; }
-        public int maDanhGia { get; set; }
-        public int maTaiKhoan { get; set; }
-        public int soSao { get; set; }
+        public int maDmTaiKhoan { get; set; }
+        public string tenLoaiTK { get; set; }
     }
 }

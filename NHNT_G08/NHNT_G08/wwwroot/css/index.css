@@ -196,3 +196,10 @@ p {
     .travel-item2-detail p {
         text-align: justify;
     }
+
+.page {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}

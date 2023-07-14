@@ -11,16 +11,19 @@ namespace NHNT_G08.Models
     {
         [Key]
         public int maPhong { get; set; }
+        public int maTaiKhoan { get; set; }
         public string tenPhong { get; set; }
         public string diaChi { get; set; }
         public int giaPhong { get; set; }
         public int giaDien { get; set; }
         public int giaNuoc { get; set; }
         public string chiTietPhong { get; set; }
-        public string anhPhong { get; set; }
         public string trangThaiPhong { get; set; }
         public string trangThaiBaiDang { get; set; }
+        public string soDienThoai { get; set; }
+
+        public double dienTich { get; set;  }
         [NotMapped]
-        public int soSaoTrungBinh { get; set; }
+        public string tenNguoiDang { get; set; }
     }
 }
