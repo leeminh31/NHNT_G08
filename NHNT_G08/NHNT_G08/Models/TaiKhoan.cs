@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,5 +16,8 @@ namespace NHNT_G08.Models
         public string hoTenNguoiDung { get; set; }
         public string matKhau { get; set; }
         public int maDmTaiKhoan { get; set; }
+
+        [NotMapped]
+        public string tenLoaiTK { get; set; }
     }
 }
