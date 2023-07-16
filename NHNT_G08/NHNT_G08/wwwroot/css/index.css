@@ -73,7 +73,8 @@ hr {
 .item_travel {
     position: relative;
     border: 1px solid rgb(1, 127, 255);
-    padding:10px;
+    padding: 10px;
+    margin-bottom: 2rem;
 }
 
 .item_travel-item1 {

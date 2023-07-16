@@ -1,4 +1,7 @@
 ﻿@model Pagination<Phong>
+@{
+    ViewData["Title"] = "Bài Đăng Đã Đánh Giá";
+}
 
 @section Style {
     <link rel="stylesheet" href="~/css/index.css" />
@@ -8,27 +11,36 @@
 <div class="main">
     <fieldset class="fieldset_item" id="fieldset_item-mienbac">
         <legend class="fieldset_item-title">
-            <a href="" id="">****** Thông tin phòng trọ *****</a>
+            <a href="" id="">****** Thông tin những bài đăng đã đánh giá *****</a>
         </legend>
         <div class="grid item">
 
             @foreach (var phong in Model)
             {
                 <div class="grid_col_4 item_travel">
-                    <a href="">
+                    <a asp-action="ChiTietPhong" asp-route-id=@phong.maPhong>
                         <div class="item_travel-item1" style="background-image: url('/img/anhtro/anh1.jpg');"></div>
                     </a>
                     <div class="item_travel-item2">
                         <div class="item_travel-item2-con">
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa-sharp fa-regular fa-star"></i>
+                            <span class="stars">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= phong.soSaoTrungBinh)
+                                    {
+                                        <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="item_travel-item2-icon fa-sharp fa-regular fa-star" aria-hidden="true"></i>
+                                    }
+                                }
+                            </span>
+                            @*<span>@phong.soLuotDanhGia lượt</span>*@
 
                             <span class="item_travel-item2-con-price">@phong.giaPhong.ToString("#,#") Đ</span>
                         </div>
-                        <a href="" class="item_travel-item2-title">@phong.tenPhong</a>
+                        <a asp-action="ChiTietPhong" asp-route-id=@phong.maPhong class="item_travel-item2-title">@phong.tenPhong</a>
 
                         <div class="item_travel-item2-info">
                             <div>
@@ -44,31 +56,32 @@
                                     <i class="fa-sharp fa-solid fa-droplet"></i>
                                     <span class="travel-item2-info--span">Giá nước: @phong.giaNuoc.ToString("#,#") Đ</span>
                                 </p>
+                                @*<p>
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="travel-item2-info--span">Người đăng bài: @phong.tenNguoiDang</span>
+                                    </p>*@
                             </div>
-
                         </div>
                     </div>
                 </div>
             }
 
-            @{
-                var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
-                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-            }
-
-            <div class="m-auto pt-3">
-                <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
-                    Previous
-                </a>
-
-                <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex +1)" class="btn btn-primary @nextDisabled">
-                    Next
-                </a>
-            </div>
-
 
         </div>
+        @{
+            var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
 
+        <div class="page">
+            <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
+                Previous
+            </a>
+
+            <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex +1)" class="btn btn-primary @nextDisabled">
+                Next
+            </a>
+        </div>
     </fieldset>
 
     <br><br><br>
@@ -149,3 +162,7 @@
     </div>
 
 </div>
+
+@section Scripts {
+
+}

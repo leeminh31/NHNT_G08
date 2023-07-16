@@ -13,57 +13,58 @@ namespace NHNT_G08.Controllers
     public class HomeController : Controller
     {
         private readonly NHNTContext _context;
-        public HomeController( NHNTContext context)
+        public HomeController(NHNTContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> Index(int? pageIndex)
+        public IActionResult Index(int? pageIndex)
         {
             int pageSize = 12;
-            var listPhong = await _context.tblPhong.ToListAsync();
+            var listPhong = _context.tblPhong.ToList();
+            LaySoSaoTrungBinh(listPhong);
+            LayThongTinNguoiDang(listPhong);
+            return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
+        }
+
+        [HttpGet]
+        [Route("/ChiTietPhong/{id:int}")]
+        public IActionResult ChiTietPhong(int id)
+        {
+            return View(_context.tblPhong.First(p => p.maPhong == id));
+        }
+
+        List<Phong> LayThongTinNguoiDang(List<Phong> listPhong)
+        {
             foreach (var phong in listPhong)
             {
-                var taiKhoan = _context.tblTaiKhoan.First(p=> p.maTaiKhoan == phong.maTaiKhoan);
+                var taiKhoan = _context.tblTaiKhoan.First(p => p.maTaiKhoan == phong.maTaiKhoan);
                 phong.tenNguoiDang = taiKhoan.hoTenNguoiDung;
             }
-            return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1,pageSize));
+            return listPhong;
         }
 
-        public async Task<IActionResult> DanhGia (int? pageIndex)
+        List<Phong> LaySoSaoTrungBinh(List<Phong> listPhong)
         {
-            int pageSize = 12;
-            return View(Pagination<Phong>.Create(await LaySoSaoTrungBinh(5), pageIndex ?? 1, pageSize));
-        }
+            var listDanhGia = _context.tblDanhGiaPhong.GroupBy(t => new { ID = t.maPhong })
+                                       .Select(g => new
+                                       {
+                                           Count = g.Count(),
+                                           Average = g.Average(p => p.soSao),
+                                           ID = g.Key.ID
+                                       });
 
-        async Task<List<Phong>> LaySoSaoTrungBinh(int? soSao)
-        {
-            //var query = from danhgia in _context.tblDanhGiaPhong
-            //            group danhgia by danhgia.maPhong into groupings
-            //            let total = groupings.Sum(p => p.soSao)
-            //            let number = groupings.Count()
-            //            let average = Math.Round((decimal)total / number)
-            //            select new
-            //            {
-            //                maPhong = groupings.Key,
-            //                Summary = new
-            //                {
-            //                    Total = total,
-            //                    Number = number,
-            //                    Average = average
-            //                }
-            //            };
-
-            
-
-            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.soSao == soSao).Select(p => p.maPhong).ToList();
-            return await _context.tblPhong.Where(x => listMaPhong.Contains(x.maPhong)).ToListAsync();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            foreach (var item in listPhong)
+            {
+                var danhGiaPhong = listDanhGia.FirstOrDefault(p => p.ID == item.maPhong);
+                if (danhGiaPhong != null)
+                {
+                    item.soSaoTrungBinh = (int)danhGiaPhong.Average;
+                    item.soLuotDanhGia = danhGiaPhong.Count;
+                }
+                else continue;
+            }
+            return listPhong;
         }
     }
 }

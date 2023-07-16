@@ -1,0 +1,71 @@
+﻿@model NHNT_G08.Models.Phong
+
+@section Style {
+    <link rel="stylesheet" href="~/css/thembaidang.css" />
+}
+
+@{
+    ViewData["Title"] = "Thêm Bài Đăng";
+}
+
+<center class="title">
+    <h1>Thêm Bài Đăng</h1>
+</center>
+
+<div class="wrapper">
+    <form class="grid form_display" asp-action="ThemBaiDang">
+        <div class="grid_col_5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<input asp-for="trangThaiPhong" type="hidden" value="Trống" />
+                <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />*@
+            <div class="form-group">
+                <label asp-for="tenPhong" class="control-label"></label>
+                <input asp-for="tenPhong" class="form-control" />
+                <span asp-validation-for="tenPhong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="diaChi" class="control-label"></label>
+                <input asp-for="diaChi" class="form-control" />
+                <span asp-validation-for="diaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="giaPhong" class="control-label"></label>
+                <input asp-for="giaPhong" class="form-control" />
+                <span asp-validation-for="giaPhong" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="grid_col_5">
+            <div class="form-group">
+                <label asp-for="giaDien" class="control-label"></label>
+                <input asp-for="giaDien" class="form-control" />
+                <span asp-validation-for="giaDien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="giaNuoc" class="control-label"></label>
+                <input asp-for="giaNuoc" class="form-control" />
+                <span asp-validation-for="giaNuoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="soDienThoai" class="control-label"></label>
+                <input asp-for="soDienThoai" class="form-control" />
+                <span asp-validation-for="soDienThoai" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="df_100_col">
+            <div class="grid_col_9">
+                <div class="form-group">
+                    <label asp-for="chiTietPhong" class="control-label"></label>
+                    <textarea asp-for="chiTietPhong" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="chiTietPhong" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo Mới" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

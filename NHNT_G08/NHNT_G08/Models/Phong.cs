@@ -12,18 +12,36 @@ namespace NHNT_G08.Models
         [Key]
         public int maPhong { get; set; }
         public int maTaiKhoan { get; set; }
+        [Display(Name = "Tên Phòng")]
+        [Required(ErrorMessage = "Cần Nhập Tên Phòng")]
         public string tenPhong { get; set; }
+        [Display(Name = "Địa Chỉ")]
+        [Required(ErrorMessage = "Cần Nhập Địa Chỉ")]
         public string diaChi { get; set; }
+        [Display(Name = "Giá Phòng")]
+        [Required(ErrorMessage = "Cần Nhập Giá Phòng")]
         public int giaPhong { get; set; }
+        [Display(Name = "Giá Điện")]
+        [Required(ErrorMessage = "Cần Nhập Giá Điện")]
         public int giaDien { get; set; }
+        [Display(Name = "Giá Nước")]
+        [Required(ErrorMessage = "Cần Nhập Giá Nước")]
         public int giaNuoc { get; set; }
+        [Display(Name = "Mô Tả Phòng")]
         public string chiTietPhong { get; set; }
         public string trangThaiPhong { get; set; }
         public string trangThaiBaiDang { get; set; }
+        [Display(Name = "Số Điện Thoại")]
+        [Phone(ErrorMessage = "Không Phải Số Điện Thoại")]
         public string soDienThoai { get; set; }
-
-        public double dienTich { get; set;  }
+        [Display(Name = "Diện Tích")]
+        [Required(ErrorMessage = "Cần Nhập Diện Tích Phòng")]
+        public double dienTich { get; set; }
         [NotMapped]
         public string tenNguoiDang { get; set; }
+        [NotMapped]
+        public int soSaoTrungBinh { get; set; }
+        [NotMapped]
+        public int soLuotDanhGia { get; set; }
     }
 }

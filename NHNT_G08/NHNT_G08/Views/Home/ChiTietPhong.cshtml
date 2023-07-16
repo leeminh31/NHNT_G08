@@ -1,0 +1,90 @@
+﻿@model NHNT_G08.Models.Phong
+
+@{
+    ViewData["Title"] = "Chi Tiết Phòng";
+}
+
+@section Style {
+    <link rel="stylesheet" href="~/css/chitietphong.css" />
+}
+
+<div class="main">
+    <h2 style="text-align:center">Thông Tin Chi Tiết Phòng @Model.tenPhong</h2>
+    <div class="grid content">
+        <div class="image_slider">
+            <img class="myslides" src="~/img/anhtro/anh1.jpg" />
+            <img class="myslides" src="~/img/anhcu/ba-ria-vung-tau.jpg" />
+            <img class="myslides" src="~/img/anhcu/cauvang.jpg" />
+
+            <button class="slide_button arrow_left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="slide_button arrow_right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+
+        <table class="room_information">
+            <tbody>
+                <tr>
+                    <td class="tieude"><i class="fa-sharp fa-solid fa-location-dot"></i> Địa Chỉ</td>
+                    <td>@Model.diaChi</td>
+                    <td class="tieude"><i class="fa-solid fa-phone"></i> Số Điện Thoại</td>
+                    <td>@Model.soDienThoai</td>
+                </tr>
+                <tr>
+                    <td class="tieude"><i class="fa-solid fa-money-bill"></i> Giá Phòng</td>
+                    <td>@Model.giaPhong</td>
+                    <td class="tieude"><i class="fa-solid fa-house"></i> Diện Tích</td>
+                    <td>@Model.dienTich</td>
+                </tr>
+                <tr>
+                    <td class="tieude"><i class="fa-sharp fa-solid fa-bolt"></i> Giá Điện</td>
+                    <td>@Model.giaDien</td>
+                    <td class="tieude"><i class="fa-sharp fa-solid fa-droplet"></i> Giá Nước</td>
+                    <td>@Model.giaNuoc</td>
+                </tr>
+                <tr>
+                    <td class="tieude"><i class="fa-solid fa-signal-bars"></i> Trạng Thái</td>
+                    <td><span class="trangthai">@Model.trangThaiPhong</span></td>
+                    <td class="tieude"><i class="fa-regular fa-face-smile"></i> Đánh Giá</td>
+                    <td>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <span style="font-size:24px"><i class="fa-solid fa-circle-info"></i> Mô Tả Chi Tiết</span>
+        <p>@Model.chiTietPhong</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("myslides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+}

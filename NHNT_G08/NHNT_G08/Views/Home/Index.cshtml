@@ -1,57 +1,15 @@
 ﻿@model Pagination<Phong>
+@{
+    ViewData["Title"] = "Danh Sách Phòng";
+}
 
 @section Style {
-<link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
 }
 
 <!-- Phần thân trang web -->
 <div class="main">
-    @*<center>
-        <img src="~/img/anhcu/Logo200.png" alt="" class="main_logo">
-        <hr width="50%">
-    </center>
-
-    <div class="main_one-sub">
-
-        <div class="main_one-sub-item">
-            <div class="main_one-sub-itemtop">
-                <img src="~/img/anhcu/protect1.png" alt="" class="main_one-sub-protect1">
-            </div>
-            <span class="main_one-sub-title">An toàn nhất</span>
-            <div class="main_one-sub-itemend">
-                <p>Chúng tôi luôn đề cao</p>
-                <p>sự an toàn của khách hàng</p>
-            </div>
-        </div>
-
-        <div class="main_one-sub-item">
-            <div class="main_one-sub-itemtop">
-                <img src="~/img/anhcu/price.png" alt="" class="main_one-sub-protect1">
-            </div>
-            <span class="main_one-sub-title">Giá tốt nhất</span>
-            <div class="main_one-sub-itemend">
-                <p>Không tăng thêm phí phụ</p>
-                <p>giá cả tốt nhất dành cho bạn</p>
-            </div>
-        </div>
-
-        <div class="main_one-sub-item">
-            <div class="main_one-sub-itemtop">
-                <img src="~/img/anhcu/tienich.png" alt="" class="main_one-sub-protect1">
-            </div>
-            <span class="main_one-sub-title">Tiện ích nhất</span>
-            <div class="main_one-sub-itemend">
-                <p>Mang đến cho bạn nhiều</p>
-                <p>tiện ích và sự lựa chọn</p>
-            </div>
-        </div>
-
-    </div>
-
-    <br><br>
-    <a href="" id="mienbac" style="position: relative; padding: 50px 0"></a>
-    <br><br><br>*@
-
     <fieldset class="fieldset_item" id="fieldset_item-mienbac">
         <legend class="fieldset_item-title">
             <a href="" id="">****** Thông tin phòng trọ *****</a>
@@ -61,20 +19,29 @@
             @foreach (var phong in Model)
             {
                 <div class="grid_col_4 item_travel">
-                    <a href="">
+                    <a asp-action="ChiTietPhong" asp-route-id=@phong.maPhong>
                         <div class="item_travel-item1" style="background-image: url('/img/anhtro/anh1.jpg');"></div>
                     </a>
                     <div class="item_travel-item2">
                         <div class="item_travel-item2-con">
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
-                            <i class="item_travel-item2-icon fa-sharp fa-regular fa-star" aria-hidden="true"></i>
+                            <span class="stars">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= phong.soSaoTrungBinh)
+                                    {
+                                        <i class="item_travel-item2-icon fa fa-star" aria-hidden="true"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="item_travel-item2-icon fa-sharp fa-regular fa-star" aria-hidden="true"></i>
+                                    }
+                                }
+                            </span>
+                            <span>@phong.soLuotDanhGia lượt</span>
 
                             <span class="item_travel-item2-con-price">@phong.giaPhong.ToString("#,#") Đ</span>
                         </div>
-                        <a href="" class="item_travel-item2-title">@phong.tenPhong</a>
+                        <a asp-action="ChiTietPhong" asp-route-id=@phong.maPhong class="item_travel-item2-title">@phong.tenPhong</a>
 
                         <div class="item_travel-item2-info">
                             <div>
@@ -90,16 +57,11 @@
                                     <i class="fa-sharp fa-solid fa-droplet"></i>
                                     <span class="travel-item2-info--span">Giá nước: @phong.giaNuoc.ToString("#,#") Đ</span>
                                 </p>
-                                <p>
-                                    <i class="fa-solid fa-user"></i>
-                                    <span class="travel-item2-info--span">Người đăng bài: @phong.tenNguoiDang</span>
-                                </p>
+                                @*<p>
+                                        <i class="fa-solid fa-user"></i>
+                                        <span class="travel-item2-info--span">Người đăng bài: @phong.tenNguoiDang</span>
+                                    </p>*@
                             </div>
-
-                            @*<div class="item_travel-item2-info2">
-                                <a href="">Chi tiết</a>
-                            </div>*@
-
                         </div>
                     </div>
                 </div>
@@ -201,3 +163,7 @@
     </div>
 
 </div>
+
+@section Scripts {
+
+}

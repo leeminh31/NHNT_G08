@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NHNT_G08</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/font-awesome-6-offline/css/all.css" />
@@ -19,30 +19,30 @@
                     <li class="menu_list-item">
                         <a href="" class="menu_list-item-link menu_list-item-nth1">TRANG CHỦ</a>
                         <!-- <ul class="menu_list-item-sub">
-                        <li>
-                            <a href="#mienbac">MIỀN BẮC</a>
-                        </li>
-                        <li>
-                            <a href="#mientrung">MIỀN TRUNG</a>
-                        </li>
-                        <li>
-                            <a href="#miennam">MIỀN NAM</a>
-                        </li>
-                    </ul> -->
+                            <li>
+                                <a href="#mienbac">MIỀN BẮC</a>
+                            </li>
+                            <li>
+                                <a href="#mientrung">MIỀN TRUNG</a>
+                            </li>
+                            <li>
+                                <a href="#miennam">MIỀN NAM</a>
+                            </li>
+                        </ul> -->
                     </li>
                     <li class="menu_list-item">
                         <a href="#tintuc" class="menu_list-item-link">TIN TỨC</a>
                         <!-- <ul class="menu_list-item-sub">
-                        <li>
-                            <a href="">MIỀN BẮC</a>
-                        </li>
-                        <li>
-                            <a href="">MIỀN TRUNG</a>
-                        </li>
-                        <li>
-                            <a href="">MIỀN NAM</a>
-                        </li>
-                    </ul> -->
+                            <li>
+                                <a href="">MIỀN BẮC</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN TRUNG</a>
+                            </li>
+                            <li>
+                                <a href="">MIỀN NAM</a>
+                            </li>
+                        </ul> -->
                     </li>
                     <li class="menu_list-item">
                         <a href="" class="menu_list-item-link">DỊCH VỤ</a>
@@ -56,17 +56,21 @@
 
                     <div class="menu_list-hot">
                         <!-- <div class="menu_list-hotline">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        1900 6543
-                    </div>
-                    <div class="menu_list-hotline">
-                        <i class="far fa-handshake"></i>
-                        HỢP TÁC VỚI CHÚNG TÔI
-                    </div> -->
-                        <p>Tài khoản: <span>admin@gmail.com</span></p>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            1900 6543
+                        </div>
+                        <div class="menu_list-hotline">
+                            <i class="far fa-handshake"></i>
+                            HỢP TÁC VỚI CHÚNG TÔI
+                        </div> -->
+                        <p>
+                            Tài khoản: <span>admin@gmail.com</span>
+                            <a href="" class="dangxuat">| Đăng xuất</a>
+                        </p>
                         <p>
                             <a href="" class="control_account">Quản lý tài khoản |</a>
-                            <a href="" class="dangxuat">Đăng xuất</a>
+                            <a href="" class="control_account">Quản lý bài đăng</a>
+
                         </p>
                     </div>
 
@@ -74,18 +78,18 @@
             </div>
 
             <!-- <div class="header_title">
-            <span class="header_title-item">
-                <i>
-                    HỖ TRỢ TÌM PHÒNG TRỌ NHANH CHÓNG
-                </i>
+                <span class="header_title-item">
+                    <i>
+                        HỖ TRỢ TÌM PHÒNG TRỌ NHANH CHÓNG
+                    </i>
 
-            </span>
-        </div> -->
+                </span>
+            </div> -->
 
         </header>
-        
+
         @RenderBody()
-        
+
         <footer>
             <hr>
             <div class="grid footer">
@@ -123,7 +127,7 @@
             </div>
         </footer>
     </div>
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
