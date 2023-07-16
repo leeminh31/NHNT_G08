@@ -73,17 +73,19 @@ body {*/
 * {
     padding: 0;
     margin: 0;
-    box-sizing:border-box;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 html {
     scroll-behavior: smooth;
-    font-family: 'Open Sans', sans-serif;
+    
 }
 
 body {
     padding: 0;
     margin: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .grid {

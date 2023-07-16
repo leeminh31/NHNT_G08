@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NHNT_G08</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="~/font-awesome-6-offline/css/all.css" />
     @RenderSection("Style")
 </head>
@@ -63,10 +63,14 @@
                         <i class="far fa-handshake"></i>
                         HỢP TÁC VỚI CHÚNG TÔI
                     </div> -->
-                        <p>Tài khoản: <span>admin@gmail.com</span></p>
+                        <p>
+                            Tài khoản: <span>admin@gmail.com</span>
+                            <a href="" class="dangxuat">| Đăng xuất</a>
+                        </p>
                         <p>
                             <a href="" class="control_account">Quản lý tài khoản |</a>
-                            <a href="" class="dangxuat">Đăng xuất</a>
+                            <a href="" class="control_account">Quản lý bài đăng</a>
+                            
                         </p>
                     </div>
 
