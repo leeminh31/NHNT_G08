@@ -68,12 +68,12 @@ hr {
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    justify-content:space-between;
 }
 
 .item_travel {
     position: relative;
     border: 1px solid rgb(1, 127, 255);
-    padding: 10px;
     margin-bottom: 2rem;
 }
 
@@ -90,7 +90,7 @@ hr {
 }
 
 .item_travel-item2 {
-    padding: 10px 0px;
+    padding: 10px;
     margin-top: 10px;
 }
 
