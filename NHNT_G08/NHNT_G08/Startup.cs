@@ -57,6 +57,12 @@ namespace NHNT_G08
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Login",
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
+            });
         }
     }
 }
