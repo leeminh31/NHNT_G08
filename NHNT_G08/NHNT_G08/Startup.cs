@@ -63,6 +63,12 @@ namespace NHNT_G08
                     name: "Login",
                     pattern: "{controller=Login}/{action=Index}/{id?}");
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Register",
+                    pattern: "{controller=Register}/{action=Index}/{id?}");
+            });
         }
     }
 }

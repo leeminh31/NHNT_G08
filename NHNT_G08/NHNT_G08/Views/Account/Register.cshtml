@@ -1,0 +1,48 @@
+@* @model NHNT_G08.Models.TaiKhoan *@
+@section Style {
+    <link rel="stylesheet" href="~/css/dangki.css" />
+}
+<!-- Phần thân trang web -->
+<div class="main">
+    <div class="form_dangki">
+        <p class="form_dangki-title">ĐĂNG KÝ</p>
+        <form asp-action="Login" method="post">
+            <div class="form_dangki-item">
+                <label class="form_dangki-item-label" for="" placeholder="Email">Họ tên</label>
+                <input type="text" name="hoten" id="hoten" class="form_dangki-item-input" placeholder="  Họ tên">
+            </div>
+
+            <div class="form_dangki-item">
+                <label class="form_dangki-item-label" for="" placeholder="Email">Tên đăng nhập</label>
+                <input type="text" name="taikhoan" id="taikhoan" class="form_dangki-item-input" placeholder="  Email">
+                @* <p id="dk_loi_email" style="margin-left: 170px; margin-top: 10px; color: red">lỗi</p> *@
+            </div>
+
+            <div class="form_dangki-item">
+                <label class="form_dangki-item-label" for="" placeholder="Password">Mật khẩu</label>
+                <input type="password" name="matkhau" id="matkhau" class="form_dangki-item-input"
+                    placeholder="  Mật khẩu">
+                @* <p id="dk_loi_mk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
+            </div>
+
+            <div class="form_dangki-item">
+                <label class="form_dangki-item-label" for="" placeholder="RePassword">Nhập lại mật khẩu</label>
+                <input type="password" name="nhaplai_matkhau" id="nhaplai_matkhau" class="form_dangki-item-input"
+                    placeholder="  Nhập lại mật khẩu">
+                @* <p id="dk_loi_nlmk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
+            </div>
+
+            @* <div class="form_dangki-show">
+                <input type="checkbox" class="" placeholder="Nhập mật khẩu">
+                <label class="form_dangki-item-label" for="">Hiện thị mật khẩu</label>
+            </div> *@
+
+            <div class="form_dangki-btn">
+                <button type="submit" class="btn btn_dangki" id="btn_dangki">Đăng kí</button>
+            </div>
+
+            <label class="form_dangki-item-label" for="" style="margin-left: 50px;">Bạn đã có tài khoản? Đăng nhập
+                <a href="@Url.Action("Index", "Login")" >tại đây</a></label>
+        </form>
+    </div>
+</div>
