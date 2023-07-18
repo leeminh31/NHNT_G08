@@ -12,12 +12,27 @@
     <h2 style="text-align:center">Thông Tin Chi Tiết Phòng @Model.tenPhong</h2>
     <div class="grid content">
         <div class="image_slider">
-            <img class="myslides" src="~/img/anhtro/anh1.jpg" />
-            <img class="myslides" src="~/img/anhcu/ba-ria-vung-tau.jpg" />
-            <img class="myslides" src="~/img/anhcu/cauvang.jpg" />
+            @if (Model.tenAnh == null)
+            {
+                <img class="myslides" src="~/img/anhtro/anh1.jpg" />
+            }
+            else
+            {
+                foreach (var anh in Model.tenAnh)
+                {
+                    <img class="myslides" src="~/img/anhphong_@Model.maPhong/@anh" />
+                }
+            }
 
-            <button class="slide_button arrow_left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="slide_button arrow_right" onclick="plusDivs(1)">&#10095;</button>
+            @if (Model.tenAnh != null)
+            {
+                if (Model.tenAnh.Count > 1)
+                {
+                    <button class="slide_button arrow_left" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="slide_button arrow_right" onclick="plusDivs(1)">&#10095;</button>
+                }
+            }
+
         </div>
 
         <table class="room_information">

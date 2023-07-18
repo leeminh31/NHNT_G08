@@ -20,7 +20,15 @@
             {
                 <div class="grid_col_4 item_travel">
                     <a asp-action="ChiTietPhong" asp-route-id=@phong.maPhong>
-                        <div class="item_travel-item1" style="background-image: url('/img/anhtro/anh1.jpg');"></div>
+                        @if (phong.tenAnh == null)
+                        {
+                            <div class="item_travel-item1" style="background-image: url('/img/anhtro/anh1.jpg');"></div>
+                        }
+                        else
+                        {
+                            <div class="item_travel-item1" style="background-image: url('/img/anhphong_@phong.maPhong/@phong.tenAnh[0]');"></div>
+                        }
+
                     </a>
                     <div class="item_travel-item2">
                         <div class="item_travel-item2-con">

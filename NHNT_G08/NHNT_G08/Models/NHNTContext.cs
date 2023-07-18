@@ -17,5 +17,7 @@ namespace NHNT_G08.Models
         public DbSet<NHNT_G08.Models.DanhGiaPhong> tblDanhGiaPhong { get; set; }
         public DbSet<NHNT_G08.Models.TaiKhoan> tblTaiKhoan { get; set; }
         public DbSet<NHNT_G08.Models.DmTaiKhoan> tblDmTaiKhoan { get; set; }
+        public DbSet<NHNT_G08.Models.HinhAnh> tblHinhAnh { get; set; }
+
     }
 }

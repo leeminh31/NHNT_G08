@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/font-awesome-6-offline/css/all.css" />
     @RenderSection("Style")
 </head>
@@ -17,7 +17,7 @@
                 <a href="index.html"><img src="./assets/img/Logo200.png" alt="" class="logo"></a>
                 <ul class="menu_list">
                     <li class="menu_list-item">
-                        <a href="" class="menu_list-item-link menu_list-item-nth1">TRANG CHỦ</a>
+                        <a asp-action="Index" asp-controller="Home" class="menu_list-item-link menu_list-item-nth1">TRANG CHỦ</a>
                         <!-- <ul class="menu_list-item-sub">
                             <li>
                                 <a href="#mienbac">MIỀN BẮC</a>
@@ -94,12 +94,12 @@
             <hr>
             <div class="grid footer">
                 <div class="grid_col_3 footer_col_1">
-                    <h3 class="footer_col_1-title">CÔNG TY TT DU LỊCH HALOTRAVEL</h3>
+                    <h3 class="footer_col_1-title">NGÂN HÀNG NHÀ TRỌ G08</h3>
                     <p>Trụ sở chính :96 Định Công,Phương Liệt, Thanh Xuân, Hà Nội </p>
                     <p>Chi nhánh Hà Nội : 101 Nguyễn Hiền, Bách Khoa, Hai Bà Trưng, Hà Nội</p>
                     <p>Điện thoại : 0964 154 302 | Hotline: 1900 9876</p>
-                    <p>Website : halotravel.com.vn</p>
-                    <p>Email: halo@gmail.com</p>
+                    <p>Website : nhntg08.com.vn</p>
+                    <p>Email: nhntg08@gmail.com</p>
                 </div>
 
                 <div class="grid_col_3 footer_col_1 grid_col_3-double">

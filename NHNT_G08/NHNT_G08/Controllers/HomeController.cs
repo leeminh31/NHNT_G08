@@ -24,6 +24,7 @@ namespace NHNT_G08.Controllers
             var listPhong = _context.tblPhong.ToList();
             LaySoSaoTrungBinh(listPhong);
             LayThongTinNguoiDang(listPhong);
+            LayHinhAnhPhong(listPhong);
             return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
         }
 
@@ -31,7 +32,15 @@ namespace NHNT_G08.Controllers
         [Route("/ChiTietPhong/{id:int}")]
         public IActionResult ChiTietPhong(int id)
         {
-            return View(_context.tblPhong.First(p => p.maPhong == id));
+            var phong = _context.tblPhong.First(p => p.maPhong == id);
+            var listAnh = LayHinhAnhPhongTheoID(id);
+            if ( listAnh.Count != 0 )
+            {
+                phong.tenAnh = new List<string>();
+                phong.tenAnh.AddRange(listAnh);
+            }
+                
+            return View(phong);
         }
 
         List<Phong> LayThongTinNguoiDang(List<Phong> listPhong)
@@ -65,6 +74,26 @@ namespace NHNT_G08.Controllers
                 else continue;
             }
             return listPhong;
+        }
+
+        List<Phong> LayHinhAnhPhong(List<Phong> listPhong)
+        {
+            foreach (var phong in listPhong)
+            {
+                var listAnh = _context.tblHinhAnh.Where(p=>p.maPhong == phong.maPhong).Select(p => p.duongDan).ToList();
+                
+                if(listAnh.Count != 0)
+                {
+                    phong.tenAnh = new List<string>();
+                    phong.tenAnh.AddRange(listAnh);
+                }                
+            }
+            return listPhong;
+        }
+
+        List<string> LayHinhAnhPhongTheoID(int id)
+        { 
+            return _context.tblHinhAnh.Where(p => p.maPhong == id).Select(p=> p.duongDan).ToList(); ;
         }
     }
 }

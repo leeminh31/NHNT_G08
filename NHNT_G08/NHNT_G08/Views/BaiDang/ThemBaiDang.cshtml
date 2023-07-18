@@ -13,11 +13,12 @@
 </center>
 
 <div class="wrapper">
-    <form class="grid form_display" asp-action="ThemBaiDang">
+    <form class="grid form_display" asp-action="ThemBaiDang" method="post" enctype="multipart/form-data">
         <div class="grid_col_5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<input asp-for="trangThaiPhong" type="hidden" value="Trống" />
-                <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />*@
+            <input asp-for="trangThaiPhong" type="hidden" value="Trống" />
+            <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />
+            <input asp-for="maTaiKhoan" type="hidden" value=1 />
             <div class="form-group">
                 <label asp-for="tenPhong" class="control-label"></label>
                 <input asp-for="tenPhong" class="form-control" />
@@ -32,6 +33,11 @@
                 <label asp-for="giaPhong" class="control-label"></label>
                 <input asp-for="giaPhong" class="form-control" />
                 <span asp-validation-for="giaPhong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="files" class="control-label"></label>
+                <input asp-for="files" class="form-control" multiple />
+                <span asp-validation-for="files" class="text-danger"></span>
             </div>
         </div>
         <div class="grid_col_5">
@@ -50,8 +56,13 @@
                 <input asp-for="soDienThoai" class="form-control" />
                 <span asp-validation-for="soDienThoai" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="dienTich" class="control-label"></label>
+                <input asp-for="dienTich" class="form-control" multiple />
+                <span asp-validation-for="dienTich" class="text-danger"></span>
+            </div>
         </div>
-        <div class="df_100_col">
+        <div class="w-100">
             <div class="grid_col_9">
                 <div class="form-group">
                     <label asp-for="chiTietPhong" class="control-label"></label>
@@ -59,10 +70,13 @@
                     <span asp-validation-for="chiTietPhong" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Tạo Mới" class="btn btn-primary" />
+            <div class="grid_col_3">
+                <div class="form-group">
+                    <input type="submit" value="Tạo Mới" class="btn btn-primary" />
+                </div>
             </div>
         </div>
+        
     </form>
 </div>
 
