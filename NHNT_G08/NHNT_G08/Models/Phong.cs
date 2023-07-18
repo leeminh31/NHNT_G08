@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using NHNT_G08.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,10 +40,17 @@ namespace NHNT_G08.Models
         [Required(ErrorMessage = "Cần Nhập Diện Tích Phòng")]
         public double dienTich { get; set; }
         [NotMapped]
+        public List<string> tenAnh { get; set; }
+        [NotMapped]
         public string tenNguoiDang { get; set; }
         [NotMapped]
         public int soSaoTrungBinh { get; set; }
         [NotMapped]
         public int soLuotDanhGia { get; set; }
+        [NotMapped]
+        [Display(Name = "Chọn Hình Ảnh Đăng Tải")]
+        [Required(ErrorMessage = "Chọn ít nhất một hình ảnh")]
+        [AllowedExtensions(new string[] { ".jpg", ".png" })]
+        public List<IFormFile> files { get; set; }
     }
 }
