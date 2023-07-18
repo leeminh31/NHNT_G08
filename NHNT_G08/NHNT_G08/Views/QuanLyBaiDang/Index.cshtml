@@ -37,19 +37,63 @@
                     </td>
 
                     <td>@baidang.trangThaiPhong</td>
-                    <td>@baidang.trangThaiBaiDang</td>
+                    <td class="@baidang.maPhong">@baidang.trangThaiBaiDang</td>
                     <td>
-                        <button class="btn btn_duyet">Duyệt bài</button>
-                        <button class="btn btn_huy">Hủy bài</button>
+                        <button class="btn btn_duyet" data-id=@baidang.maPhong>Duyệt bài</button>
+                        <button class="btn btn_xoa" data-id-xoa=@baidang.maPhong>Xóa bài</button>
                     </td>
                  </tr>
 
               }
-
-                
+               
             </table>
-
-
-
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn_duyet').click(function () {
+
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("duyetBaiDang")",
+                    data: {
+                        id: id
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result == true) {
+                            $('.'+id).html("duyệt");
+                            alert("duyệt bài thành công");
+                        }
+                    }
+                });
+            });
+
+
+            $('.btn_xoa').click(function () {
+                var id = $(this).attr('data-id-xoa');
+                var result = confirm("Bạn có chắc chắn muốn xóa không? ")
+                if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("xoaBaiDang")",
+                    data: {
+                        id: id
+                    },
+                    success: function (result) {
+
+                         window.location.href ="@Url.RouteUrl("Index")";
+                    }
+                });
+                }
+                
+
+            });
+
+        });
+    </script>
+
+}
