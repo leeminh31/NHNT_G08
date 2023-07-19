@@ -20,10 +20,6 @@ namespace NHNT_G08.Controllers
         private readonly ILogger<LoginController> _logger;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        // public LoginController(IHttpContextAccessor httpContextAccessor)
-        // {
-        //     _httpContextAccessor = httpContextAccessor;
-        // }
         private readonly NHNTContext _context;
         public LoginController( NHNTContext context, IHttpContextAccessor httpContextAccessor)
         {
@@ -40,9 +36,7 @@ namespace NHNT_G08.Controllers
         [HttpPost]
         [Route("Login")]
         public IActionResult Login(TaiKhoan model)
-        {
-            
-    
+        {    
             if (ModelState.IsValid)
             {
                 var user = _context.tblTaiKhoan.SingleOrDefault(u => u.tenDangNhap == model.tenDangNhap && u.matKhau == model.matKhau);
@@ -73,11 +67,6 @@ namespace NHNT_G08.Controllers
             _httpContextAccessor.HttpContext.Session.Remove("tenDangNhap");
             return RedirectToAction("Index", "Home");
         }
-        // public IActionResult Logout()
-        // {
-        //     _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", "");
-        //     return RedirectToAction("Index", "Home");
-        // }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [Route("Error")]
         public IActionResult Error()
