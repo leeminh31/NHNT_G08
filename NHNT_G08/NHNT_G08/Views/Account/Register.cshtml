@@ -6,7 +6,7 @@
 <div class="main">
     <div class="form_dangki">
         <p class="form_dangki-title">ĐĂNG KÝ</p>
-        <form asp-action="Login" method="post">
+        <form asp-controller="Register" asp-action="Register" method="post">
             <div class="form_dangki-item">
                 <label class="form_dangki-item-label" for="" placeholder="Email">Họ tên</label>
                 <input type="text" name="hoten" id="hoten" class="form_dangki-item-input" placeholder="  Họ tên">
@@ -14,13 +14,13 @@
 
             <div class="form_dangki-item">
                 <label class="form_dangki-item-label" for="" placeholder="Email">Tên đăng nhập</label>
-                <input type="text" name="taikhoan" id="taikhoan" class="form_dangki-item-input" placeholder="  Email">
+                <input type="text" name="tenDangNhap" id="taikhoan" class="form_dangki-item-input" placeholder="  Email">
                 @* <p id="dk_loi_email" style="margin-left: 170px; margin-top: 10px; color: red">lỗi</p> *@
             </div>
 
             <div class="form_dangki-item">
                 <label class="form_dangki-item-label" for="" placeholder="Password">Mật khẩu</label>
-                <input type="password" name="matkhau" id="matkhau" class="form_dangki-item-input"
+                <input type="password" name="matKhau" id="matkhau" class="form_dangki-item-input"
                     placeholder="  Mật khẩu">
                 @* <p id="dk_loi_mk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
             </div>

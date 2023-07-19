@@ -8,6 +8,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NHNT_G08.Controllers
 {
@@ -15,36 +18,71 @@ namespace NHNT_G08.Controllers
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
+        // public LoginController(IHttpContextAccessor httpContextAccessor)
+        // {
+        //     _httpContextAccessor = httpContextAccessor;
+        // }
         private readonly NHNTContext _context;
-        public LoginController( NHNTContext context)
+        public LoginController( NHNTContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-
+        [Route("Index")]
         public IActionResult Index()
         {
+            // ViewBag.ten = "chưa đăng nhập";
             return View("~/Views/Account/Login.cshtml");
         }
-
         [HttpPost]
+        [Route("Login")]
         public IActionResult Login(TaiKhoan model)
         {
-            if (!ModelState.IsValid)
+            
+    
+            if (ModelState.IsValid)
             {
-                return View();
+                var user = _context.tblTaiKhoan.SingleOrDefault(u => u.tenDangNhap == model.tenDangNhap && u.matKhau == model.matKhau);
+                if (user != null)
+                {
+                    //GaleL_Elliott@example.com | kbcwqbdadmor
+                    _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", model.tenDangNhap);
+
+                    ViewBag.TenDangNhap = model.tenDangNhap;
+                    return RedirectToAction("Index", "Home");
+                    // return View("~/Views/Account/Login.cshtml");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác.");
+                    ViewBag.loi = "Tên đăng nhập hoặc mật khẩu không chính xác";
+                    // return View("~/Views/Account/Login.cshtml");
+                }
             }
-
-            // Kiểm tra thông tin đăng nhập với cơ sở dữ liệu hoặc xử lý theo yêuầu
-
-            // Chuyển hướng đến trang thành công
-            return View("~/Views/Home/Index.cshtml");
+            return RedirectToAction("Index", "Login");
         }
-        // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        // public IActionResult Error()
+
+        [HttpGet]
+        [Route("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            _httpContextAccessor.HttpContext.Session.Remove("tenDangNhap");
+            return RedirectToAction("Index", "Home");
+        }
+        // public IActionResult Logout()
         // {
-        //     return View("Error!");
+        //     _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", "");
+        //     return RedirectToAction("Index", "Home");
         // }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Route("Error")]
+        public IActionResult Error()
+        {
+            return View("Error!");
+        }
     }
 }

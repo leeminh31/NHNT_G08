@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace NHNT_G08
 {
@@ -26,9 +27,30 @@ namespace NHNT_G08
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "NHNT_G08.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "NHNT_G08.Session";
+            });
+            services.AddHttpContextAccessor();
             services.AddDbContext<NHNTContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NHNTG08Context")));
+                options.UseSqlServer(Configuration.GetConnectionString("NHNTG08Context")));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+                {
+                options.LoginPath = "/Login/Login";
+                options.LogoutPath = "/Login/Logout";
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +71,7 @@ namespace NHNT_G08
 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -66,8 +89,26 @@ namespace NHNT_G08
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Login",
+                    pattern: "{controller=Login}/{action=Login}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Logout",
+                    pattern: "{controller=Login}/{action=Logout}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
                     name: "Register",
                     pattern: "{controller=Register}/{action=Index}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Register",
+                    pattern: "{controller=Register}/{action=Register}/{id?}");
             });
         }
     }

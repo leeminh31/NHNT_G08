@@ -5,20 +5,25 @@
 }
 <!-- Phần thân trang web -->
 <div class="main">
+    
     <div class="form_dangnhap">
         <p class="form_dangnhap-title">ĐĂNG NHẬP</p>
-        <form asp-action="Login" asp-controller="Login" method="post">
+        <form asp-controller="Login" asp-action="Login" method="post">
             <div class="form_dangnhap-item">
                 <label class="form_dangnhap-item-label" for="">Tên tài khoản</label>
-                <input type="text" name="taikhoan" id="taikhoan" class="form_dangnhap-item-input" placeholder="  Email">
-                <label id="dn_loi_email" style="margin-top: 10px; color: red"></label>
+                <input asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap" class="form_dangnhap-item-input" placeholder="  Email">
+                <label asp-validation-for="tenDangNhap"  id="dn_loi_email" style="margin-top: 10px; color: red"></label>
             </div>
 
             <div class="form_dangnhap-item">
                 <label class="form_dangnhap-item-label" for="">Mật khẩu</label>
-                <input type="password" name="matkhau" id="matkhau" class="form_dangnhap-item-input" placeholder="  Nhập mật khẩu">
-                <p id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
+                <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_dangnhap-item-input" placeholder="  Nhập mật khẩu">
+                <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
             </div>
+            @if (ViewBag.ten != null)
+            {
+                <div class="alert alert-danger">@ViewBag.ten</div>
+            }
 
 @* 
             <div class="form_dangnhap-show">
@@ -28,7 +33,7 @@
             </div> *@
 
             <div class="form_dangnhap-btn">
-                <button type="button" class="btn btn_dangnhap" asp-action="Login" type="submit" id="btn_dangnhap"> Đăng nhập
+                <button class="btn btn_dangnhap" asp-action="Login" type="submit" id="btn_dangnhap"> Đăng nhập
                 </button>
             </div>
 

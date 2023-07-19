@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace NHNT_G08.Controllers
 {
@@ -20,6 +21,8 @@ namespace NHNT_G08.Controllers
 
         public IActionResult Index(int? pageIndex)
         {
+            
+            ViewBag.TenDangNhap = HttpContext.Session.GetString("tenDangNhap");
             int pageSize = 12;
             var listPhong = _context.tblPhong.ToList();
             LaySoSaoTrungBinh(listPhong);

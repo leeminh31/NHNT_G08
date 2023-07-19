@@ -47,25 +47,17 @@
                     <li class="menu_list-item">
                         <a href="" class="menu_list-item-link">DỊCH VỤ</a>
                     </li>
-                    <li class="menu_list-item">
-                        <a href="@Url.Action("Index", "Register")" class="menu_list-item-link">ĐĂNG KÍ</a>
-                    </li>
-                    <li class="menu_list-item">
-                        <a href="@Url.Action("Index", "Login")" class="menu_list-item-link">ĐĂNG NHẬP</a>
-                    </li>
-
+                     @if (ViewBag.TenDangNhap != null)
+                    {
+                    
                     <div class="menu_list-hot">
-                        <!-- <div class="menu_list-hotline">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            1900 6543
-                        </div>
-                        <div class="menu_list-hotline">
-                            <i class="far fa-handshake"></i>
-                            HỢP TÁC VỚI CHÚNG TÔI
-                        </div> -->
+                        
                         <p>
-                            Tài khoản: <span>admin@gmail.com</span>
-                            <a href="" class="dangxuat">| Đăng xuất</a>
+                            
+                                Tài khoản: <span> @ViewBag.TenDangNhap</span>
+                                <a href="@Url.Action("Logout", "Login")" class="dangxuat">| Đăng xuất</a>
+                           
+                            
                         </p>
                         <p>
                             <a href="" class="control_account">Quản lý tài khoản |</a>
@@ -73,6 +65,14 @@
 
                         </p>
                     </div>
+                    }else{
+                        <li class="menu_list-item">
+                        <a href="@Url.Action("Index", "Register")" class="menu_list-item-link">ĐĂNG KÍ</a>
+                        </li>
+                        <li class="menu_list-item">
+                            <a href="@Url.Action("Index", "Login")" class="menu_list-item-link">ĐĂNG NHẬP</a>
+                        </li>
+                    }
 
                 </ul>
             </div>
