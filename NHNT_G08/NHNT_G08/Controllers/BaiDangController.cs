@@ -20,6 +20,9 @@ namespace NHNT_G08.Controllers
         [HttpGet]
         public IActionResult ThemBaiDang()
         {
+            ViewData["Title"] = "Thêm Bài Đăng";
+            ViewData["Action"] = "ThemBaiDang";
+            ViewData["Btn_Value"] = "Tạo Mới"; 
             return View();
         }
 
@@ -30,13 +33,13 @@ namespace NHNT_G08.Controllers
             {
                 _context.Add(phong);
                 _context.SaveChanges();
-                var maPhong = _context.tblPhong.OrderBy(p=> p.maPhong).Select(p=>p.maPhong).Last();
+                var maPhong = phong.maPhong;
                 if (phong.files.Count > 0)
                 {
                     foreach (var file in phong.files)
                     {
 
-                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_"+maPhong);
+                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
 
                         //create folder if not exist
                         if (!Directory.Exists(path))
@@ -52,15 +55,71 @@ namespace NHNT_G08.Controllers
                         HinhAnh anh = new HinhAnh();
                         anh.maPhong = maPhong;
                         anh.duongDan = file.FileName;
-                        _context.tblHinhAnh.Add(anh);                      
+                        _context.tblHinhAnh.Add(anh);
                     }
                     _context.SaveChanges();
                 }
-                
+
                 return RedirectToAction("Index", "Home");
             }
             return View(phong);
         }
+
+        [HttpGet]
+        public IActionResult SuaBaiDang(Phong phong)
+        {
+            ViewData["Title"] = "Sửa Bài Đăng";
+            ViewData["Btn_Value"] = "Sửa"; 
+            ViewData["Action"] = "SuaBaiDang";
+            return View("ThemBaiDang");
+        }
+
+        [HttpPost]
+        public IActionResult SuaBaiDang(Phong phong, string unusedValue = "")
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Update(phong);
+                var listAnh = _context.tblHinhAnh.Where(p => p.maPhong == phong.maPhong).ToList();
+                _context.tblHinhAnh.RemoveRange(listAnh);
+                _context.SaveChanges();
+                var maPhong = phong.maPhong;
+                if (phong.files.Count > 0)
+                {
+                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
+
+                    //create folder if not exist
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    else
+                    {
+                        Directory.Delete(path,true);
+                        Directory.CreateDirectory(path);
+                    }
+
+                    foreach (var file in phong.files)
+                    {                                            
+                        string fileNameWithPath = Path.Combine(path, file.FileName);
+
+                        using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                        HinhAnh anh = new HinhAnh();
+                        anh.maPhong = maPhong;
+                        anh.duongDan = file.FileName;
+                        _context.tblHinhAnh.Add(anh);
+                    }
+                    _context.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(phong);
+        }
+
+
+
 
         [HttpGet]
         public IActionResult BaiDangDaDanhGia(int? pageIndex)
@@ -89,9 +148,10 @@ namespace NHNT_G08.Controllers
         [HttpGet]
         public IActionResult BaiDaDang ()
         {
-            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == 7).ToList();
+            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == 2).ToList();
             LayThongTinNguoiDang(listPhong);
             return View(listPhong);
         }
+
     }
 }

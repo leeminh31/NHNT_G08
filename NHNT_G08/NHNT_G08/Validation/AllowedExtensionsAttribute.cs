@@ -20,20 +20,24 @@ namespace NHNT_G08.Validation
         object value, ValidationContext validationContext)
         {
             var listFile = value as List<IFormFile>;
-            if(listFile.Count >0)
+            if(listFile != null)
             {
-                foreach(var file in listFile)
+                if (listFile.Count > 0)
                 {
-                    if (file != null)
+                    foreach (var file in listFile)
                     {
-                        var extension = Path.GetExtension(file.FileName);
-                        if (!_extensions.Contains(extension.ToLower()))
+                        if (file != null)
                         {
-                            return new ValidationResult(GetErrorMessage());
+                            var extension = Path.GetExtension(file.FileName);
+                            if (!_extensions.Contains(extension.ToLower()))
+                            {
+                                return new ValidationResult(GetErrorMessage());
+                            }
                         }
                     }
                 }
             }
+            
 
             return ValidationResult.Success;
         }

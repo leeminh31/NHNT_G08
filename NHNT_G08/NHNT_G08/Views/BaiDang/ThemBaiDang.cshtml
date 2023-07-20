@@ -5,21 +5,37 @@
     <link rel="stylesheet" href="~/css/site.css" />
 }
 
-@{
-    ViewData["Title"] = "Thêm Bài Đăng";
-}
-
 <center class="title">
-    <h1>Thêm Bài Đăng</h1>
+    <h1>@ViewData["Title"]</h1>
 </center>
 
 <div class="wrapper">
-    <form class="grid form_display" asp-action="ThemBaiDang" method="post" enctype="multipart/form-data">
+    <form class="grid form_display" asp-action="@ViewData["action"]" method="post" enctype="multipart/form-data">
         <div class="grid_col_5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="trangThaiPhong" type="hidden" value="Trống" />
-            <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />
-            <input asp-for="maTaiKhoan" type="hidden" value=1 />
+            @if (string.Equals(ViewData["Title"].ToString(), "Sửa Bài Đăng"))
+            {
+                <input asp-for="maPhong" type="hidden" />
+                <input asp-for="maTaiKhoan" type="hidden"/>
+                <input asp-for="trangThaiBaiDang" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="trangThaiPhong" class="control-label"></label>
+                    <select asp-for="trangThaiPhong" class="form-control">
+                        <option value="Còn Phòng">Còn Phòng</option>
+                        <option value="Hết Phòng">Hết Phòng</option>
+                    </select>
+                    @*<input asp-for="tenPhong" class="form-control" />*@
+                    <span asp-validation-for="trangThaiPhong" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <input asp-for="trangThaiPhong" type="hidden" value="Còn Phòng" />
+                <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />
+                <input asp-for="maTaiKhoan" type="hidden" value=1 />
+            }
+
+
             <div class="form-group">
                 <label asp-for="tenPhong" class="control-label"></label>
                 <input asp-for="tenPhong" class="form-control" />
@@ -37,7 +53,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="files" class="control-label"></label>
-                <input asp-for="files" class="form-control" multiple />
+                <input asp-for="files" class="form-control" multiple/>
                 <span asp-validation-for="files" class="text-danger"></span>
             </div>
         </div>
@@ -73,7 +89,7 @@
             </div>
             <div class="grid_col_3">
                 <div class="form-group">
-                    <input type="submit" value="Tạo Mới" class="btn btn-primary" />
+                    <input type="submit" value="@ViewData["btn_value"]" class="btn btn-primary" />
                 </div>
             </div>
         </div>
