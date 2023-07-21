@@ -1,0 +1,41 @@
+﻿
+@model NHNT_G08.Models.TaiKhoan
+@section Style {
+<link rel="stylesheet" href="~/css/dangnhap.css" />
+}
+<!-- Phần thân trang web -->
+<div class="main">
+    <div class="form_dangnhap">
+        <p class="form_dangnhap-title">Thông tin tài khoản</p>
+        <form asp-action="Login"  method="post">
+            <div class="form_dangnhap-item">
+                <label class="form_dangnhap-item-label" for="">Tên đăng nhập</label>
+                <input type="text" disabled name="taikhoan" id="taikhoan" class="form_dangnhap-item-input" placeholder="  Email">
+                @* <label id="dn_loi_email" style="margin-top: 10px; color: red"></label> *@
+            </div>
+            <div class="form_dangnhap-item">
+                <label class="form_dangnhap-item-label" for="">Họ tên</label>
+                <input type="text" name="hoten" id="hoten" class="form_dangnhap-item-input" placeholder="  Họ tên">
+                <label id="" style="margin-top: 10px; color: red"></label>
+            </div>
+
+            <div class="form_dangnhap-item">
+                <label class="form_dangnhap-item-label" for="">Số điện thoại</label>
+                <input type="text" name="soDienThoai" id="soDienThoai" class="form_dangnhap-item-input" placeholder="  Số điện thoại">
+                <label id="" style="margin-top: 10px; color: red"></label>
+            </div>
+
+            @* <div class="form_dangnhap-show">
+                <input type="checkbox" class="">
+                <label class="form_dangnhap-item-label" for="">Hiện thị mật khẩu</label>
+
+            </div> *@
+
+            <div class="form_dangnhap-btn">
+                <button class="btn btn_dangnhap" type="submit" id="btn_dangnhap"> Cập nhật
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

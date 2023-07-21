@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NHNT_G08.Models;
+using Microsoft.AspNetCore.Http;
 
 
 namespace NHNT_G08.Controllers

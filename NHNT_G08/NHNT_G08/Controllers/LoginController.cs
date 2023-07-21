@@ -11,6 +11,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace NHNT_G08.Controllers
 {
@@ -30,7 +31,7 @@ namespace NHNT_G08.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            // ViewBag.ten = "chưa đăng nhập";
+            // ViewBag.TenDangNhap = HttpContext.Session.GetString("tenDangNhap");
             return View("~/Views/Account/Login.cshtml");
         }
         [HttpPost]
@@ -45,6 +46,7 @@ namespace NHNT_G08.Controllers
                     //GaleL_Elliott@example.com | kbcwqbdadmor
                     _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", model.tenDangNhap);
 
+//++ mã tk ++ maDmTaiKhoan
                     ViewBag.TenDangNhap = model.tenDangNhap;
                     return RedirectToAction("Index", "Home");
                     // return View("~/Views/Account/Login.cshtml");
