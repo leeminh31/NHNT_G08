@@ -110,6 +110,12 @@ namespace NHNT_G08
                     name: "Register",
                     pattern: "{controller=Register}/{action=Register}/{id?}");
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Account",
+                    pattern: "{controller=Account}/{action=Index}/{id?}");
+            });
         }
     }
 }
