@@ -118,7 +118,23 @@ namespace NHNT_G08.Controllers
             return View(phong);
         }
 
-
+        [HttpPost]
+        public bool XoaBaiDang ([FromForm] int maPhong)
+        {
+            try
+            {
+                var phong = _context.tblPhong.Find(maPhong);
+                var hinhAnhPhong = _context.tblHinhAnh.Where(p => p.maPhong == maPhong).ToList();
+                _context.tblPhong.Remove(phong);
+                _context.tblHinhAnh.RemoveRange(hinhAnhPhong);
+                _context.SaveChanges();
+                return true;
+            } catch
+            {
+                return false;
+            }
+            
+        }
 
 
         [HttpGet]
@@ -148,7 +164,7 @@ namespace NHNT_G08.Controllers
         [HttpGet]
         public IActionResult BaiDaDang ()
         {
-            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == 2).ToList();
+            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == 1).ToList();
             LayThongTinNguoiDang(listPhong);
             return View(listPhong);
         }

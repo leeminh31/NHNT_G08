@@ -20,43 +20,67 @@
                 <th>Tác vụ</th>
             </tr>
 
-            @foreach (var baidang in Model)
+            @foreach (var item in Model.Select((baidang, i) => (baidang, i)))
             {
                 <tr>
-                    <td>1</td>
-                    <td>@baidang.tenNguoiDang</td>
-                    <td>@baidang.soDienThoai</td>
+                    <td>@Convert.ToInt32(item.i +1)</td>
+                    <td>@item.baidang.tenNguoiDang</td>
+                    <td>@item.baidang.soDienThoai</td>
                     <td>
-                        <span>Tên phòng :@baidang.tenPhong</span><br>
-                        <span>Địa chỉ :@baidang.diaChi</span><br>
-                        <span>Giá phòng : @baidang.giaPhong</span><br>
-                        <span>Giá điện : @baidang.giaDien</span><br>
-                        <span>Giá nước : @baidang.giaNuoc</span><br>
-                        <span>Diện tích :@baidang.dienTich</span>
+                        <span>Tên phòng :@item.baidang.tenPhong</span><br>
+                        <span>Địa chỉ :@item.baidang.diaChi</span><br>
+                        <span>Giá phòng : @item.baidang.giaPhong</span><br>
+                        <span>Giá điện : @item.baidang.giaDien</span><br>
+                        <span>Giá nước : @item.baidang.giaNuoc</span><br>
+                        <span>Diện tích :@item.baidang.dienTich</span>
                     </td>
 
-                    <td>@baidang.trangThaiPhong</td>
-                    <td>@baidang.trangThaiBaiDang</td>
+                    <td>@item.baidang.trangThaiPhong</td>
+                    <td>@item.baidang.trangThaiBaiDang</td>
                     <td>
-                        @Html.ActionLink("Sửa Bài","SuaBaiDang",baidang,new { @class= "btn_sua"})
-                        <button class="btn_xoa">Xóa Bài</button>
+                        @Html.ActionLink("Sửa Bài", "SuaBaiDang", item.baidang, new { @class = "btn_sua" })
+                        <button class="btn_xoa" data-id=@item.baidang.maPhong>Xóa Bài</button>
                     </td>
                 </tr>
             }
         </table>
     </div>
     @*@{
-        var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    }
+            var previousDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
 
-    <div class="page">
-        <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
-            Previous
-        </a>
+        <div class="page">
+            <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex -1)" class="btn btn-primary @previousDisabled">
+                Previous
+            </a>
 
-        <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex +1)" class="btn btn-primary @nextDisabled">
-            Next
-        </a>
-    </div>*@
+            <a asp-action="Index" asp-route-pageIndex="@(Model.PageIndex +1)" class="btn btn-primary @nextDisabled">
+                Next
+            </a>
+        </div>*@
 </div>
+
+@section Scripts {
+    <script>
+        $('document').ready(function () {
+            $('.btn_xoa').click(function () {
+                var maPhong = $(this).attr("data-id");
+                var result = confirm("Bạn có xác nhận xóa bài đăng này ?")
+                if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("XoaBaiDang")",
+                    data: {
+                        maPhong: maPhong,
+                    },
+                    success: function (result) {
+                        result ? alert('Xóa Thành Công') : alert('Xóa Thất Bại')
+                        window.location.href = "@Url.Action("BaiDaDang")"
+                    }
+                });
+                }
+            })
+        })
+    </script>
+}
