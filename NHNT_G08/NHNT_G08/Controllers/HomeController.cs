@@ -24,7 +24,7 @@ namespace NHNT_G08.Controllers
             
             ViewBag.TenDangNhap = HttpContext.Session.GetString("tenDangNhap");
             int pageSize = 12;
-            var listPhong = _context.tblPhong.ToList();
+            var listPhong = _context.tblPhong.Where(p=> string.Equals(p.trangThaiBaiDang, "Duyệt")).ToList();
             LaySoSaoTrungBinh(listPhong);
             LayThongTinNguoiDang(listPhong);
             LayHinhAnhPhong(listPhong);
@@ -36,6 +36,7 @@ namespace NHNT_G08.Controllers
         public IActionResult ChiTietPhong(int id)
         {
             var phong = _context.tblPhong.First(p => p.maPhong == id);
+            phong.soSaoTrungBinh = LayDanhGiaPhongTheoID(id);
             var listAnh = LayHinhAnhPhongTheoID(id);
             if ( listAnh.Count != 0 )
             {
@@ -44,6 +45,30 @@ namespace NHNT_G08.Controllers
             }
                 
             return View(phong);
+        }
+
+        [HttpPost]
+        public bool DanhGiaBaiDang([FromForm] int soSao, [FromForm] int maPhong, [FromForm] int maTaiKhoan)
+        {
+            try
+            {
+                var checkDanhGia = _context.tblDanhGiaPhong.FirstOrDefault(p => p.maPhong == maPhong && p.maTaiKhoan == maTaiKhoan);
+            checkDanhGia.soSao = soSao;
+            if (checkDanhGia != null)
+            {
+                _context.Update(checkDanhGia);
+            }
+            else
+            {
+                _context.tblDanhGiaPhong.Add(checkDanhGia);
+            }
+            _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         List<Phong> LayThongTinNguoiDang(List<Phong> listPhong)
@@ -71,7 +96,7 @@ namespace NHNT_G08.Controllers
                 var danhGiaPhong = listDanhGia.FirstOrDefault(p => p.ID == item.maPhong);
                 if (danhGiaPhong != null)
                 {
-                    item.soSaoTrungBinh = (int)danhGiaPhong.Average;
+                    item.soSaoTrungBinh = (float)danhGiaPhong.Average;
                     item.soLuotDanhGia = danhGiaPhong.Count;
                 }
                 else continue;
@@ -97,6 +122,11 @@ namespace NHNT_G08.Controllers
         List<string> LayHinhAnhPhongTheoID(int id)
         { 
             return _context.tblHinhAnh.Where(p => p.maPhong == id).Select(p=> p.duongDan).ToList(); ;
+        }
+
+        int LayDanhGiaPhongTheoID(int id)
+        {
+            return _context.tblDanhGiaPhong.Where(p => p.maPhong == id).Select(p=> p.soSao).FirstOrDefault();
         }
     }
 }

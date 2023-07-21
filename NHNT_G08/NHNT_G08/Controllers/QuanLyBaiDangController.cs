@@ -32,5 +32,35 @@ namespace NHNT_G08.Controllers
 
             return View(listBD);
         }
+
+        [HttpPost]
+        public async Task<bool> duyetBaiDang(int id)
+        {
+            try
+            {
+                var phong = _context.tblPhong.Where(p=>p.maPhong == id).First();
+                phong.trangThaiBaiDang = "duyệt";
+                _context.tblPhong.Update(phong);
+                await _context.SaveChangesAsync();
+                return true;
+            } catch
+            {
+                return false;
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> xoaBaiDang(int id)
+        {
+            
+                //var phong = _context.tblPhong.Where(p => p.maPhong == id).First();
+                var phong = await _context.tblPhong.FindAsync(id);
+                _context.tblPhong.Remove(phong);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+
+        }
     }
 }

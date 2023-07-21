@@ -52,7 +52,7 @@ body {
 
     .menu_list-item-link:hover {
         color: rgb(91, 250, 58);
-        text-decoration:none;
+        text-decoration: none;
     }
 
 .menu_list-hot {
@@ -184,21 +184,27 @@ th {
     text-align: left;
 }
 
-.btn_duyet {
+.btn_sua {
     border: none;
-    padding: 5px;
-    background-color: #109b06;
-    color: #fff;
+    padding: 8px;
+    background-color: rgba(16, 155, 6, 0.8);
     border-radius: 4px;
+    color:#fff;
 }
 
-.btn_xoa {
+    .btn_sua:hover {
+        background-color: rgba(16, 155, 6, 1);
+        color: #fff;
+        text-decoration: none;
+    }
+
+/*.btn_xoa {
     border: none;
     padding: 5px;
     background-color: #b51e20;
     color: #fff;
     border-radius: 4px;
-}
+}*/
 
 /*quan ly tai khoan*/
 .status_account {
@@ -206,7 +212,7 @@ th {
     font-weight: bold;
 }
 
-.btn_khoa {
+.btn_xoa {
     border: none;
     padding: 5px;
     background-color: rgba(181, 30, 32, 0.8);
@@ -214,8 +220,7 @@ th {
     border-radius: 4px;
 }
 
-    .btn_khoa:hover {
+    .btn_xoa:hover {
         background-color: rgb(181, 30, 32);
-        color:#fff;
+        color: #fff;
     }
-

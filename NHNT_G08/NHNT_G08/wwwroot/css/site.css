@@ -224,6 +224,7 @@ td {
 
     .menu_list-item-link:hover {
         color: rgb(91, 250, 58);
+        text-decoration:none;
     }
 
 .menu_list-hot {
@@ -249,11 +250,20 @@ td {
     color: white;
     text-decoration: none;
 }
+.control_account:hover {
+    color:rgb(91, 250, 58) ;
+    text-decoration:none;
+}
 
 .dangxuat, .tenDangNhap {
-    color: white;
+   color: white;
     text-decoration: none;
 }
+
+    .dangxuat:hover {
+        color:rgb(91, 250, 58);
+        text-decoration:none;
+    }
 /* ------------- */
 
 .menu_list-item-sub {

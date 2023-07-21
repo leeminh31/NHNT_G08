@@ -11,7 +11,7 @@ body{
  
 .header{
     background-image: none !important;
-    padding-top: 5% !important;
+    /* padding-top: 5% !important; */
 
 }
 .header_menu{
@@ -31,7 +31,7 @@ body{
     margin-left: 100px;
 }
 
-.menu_list-item{
+.menu_list-item, .menu_list-hot{
     position: relative;
     list-style: none;
     color:white;
@@ -41,6 +41,35 @@ body{
     cursor: pointer;
 }
 
+/* xu ly khi có tài khoản */
+
+.menu_list-hot p {
+    color: white;
+}
+
+.none {
+    display: none;
+}
+
+.control_account {
+    color: white;
+    text-decoration: none;
+}
+.control_account:hover {
+    color:rgb(91, 250, 58) ;
+    text-decoration:none;
+}
+
+.dangxuat, .tenDangNhap {
+   color: white;
+    text-decoration: none;
+}
+
+    .dangxuat:hover {
+        color:rgb(91, 250, 58);
+        text-decoration:none;
+    }
+/* ------------- */
 .menu_list-item:hover{
     color:  rgb(91, 250, 58);
 }

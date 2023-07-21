@@ -5,6 +5,7 @@
 }
 
 @section Style {
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/chitietphong.css" />
 }
 
@@ -61,15 +62,15 @@
                     <td class="tieude"><i class="fa-regular fa-face-smile"></i> Đánh Giá</td>
                     <td>
                         <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
+                            <input type="radio" id="star5" name="rate" value="5" @(Model.soSaoTrungBinh ==5 ? "checked" : "")/>
                             <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
+                            <input type="radio" id="star4" name="rate" value="4" @(Model.soSaoTrungBinh ==4 ? "checked" : "")/>
                             <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
+                            <input type="radio" id="star3" name="rate" value="3" @(Model.soSaoTrungBinh ==3 ? "checked" : "")/>
                             <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
+                            <input type="radio" id="star2" name="rate" value="2" @(Model.soSaoTrungBinh ==2 ? "checked" : "")/>
                             <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
+                            <input type="radio" id="star1" name="rate" value="1" @(Model.soSaoTrungBinh ==1 ? "checked" : "")/>
                             <label for="star1" title="text">1 star</label>
                         </div>
                     </td>
@@ -84,22 +85,43 @@
 
 @section Scripts {
     <script>
-        var slideIndex = 1;
-        showDivs(slideIndex);
+        $('document').ready(function () {
+            var slideIndex = 1;
+            showDivs(slideIndex);
 
-        function plusDivs(n) {
-            showDivs(slideIndex += n);
-        }
-
-        function showDivs(n) {
-            var i;
-            var x = document.getElementsByClassName("myslides");
-            if (n > x.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = x.length }
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
             }
-            x[slideIndex - 1].style.display = "block";
-        }
+
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("myslides");
+                if (n > x.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = x.length }
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                x[slideIndex - 1].style.display = "block";
+            }
+
+            $('input[name=rate]').click(function () {
+                var soSao = $(this).val();
+                var result = confirm("Bạn có xác nhận đánh giá bài đăng này ?")
+                if (result == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("DanhGiaBaiDang")",
+                    data: {
+                        soSao: soSao,
+                        maPhong: @Model.maPhong,
+                        maTaiKhoan:1,
+                    },
+                    success: function (result) {
+                        result ? alert('Cảm Ơn Bạn Đã Đánh Giá') : alert('Lỗi Đánh Giá !')
+                    }
+                });
+                }
+            })
+        })
     </script>
 }

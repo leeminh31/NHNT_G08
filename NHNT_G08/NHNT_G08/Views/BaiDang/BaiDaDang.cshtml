@@ -1,6 +1,7 @@
 ﻿
 @section Style {
-    <link rel="stylesheet" href="~/css/quanlybaidang.css" />
+    <link rel="stylesheet" href="~/css/baidadang.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 }
 
 @model List<NHNT_G08.Models.Phong>
@@ -16,7 +17,7 @@
                 <th>Thông tin phòng trọ</th>
                 <th>Trạng thái phòng</th>
                 <th>Trạng thái bài đăng</th>
-                @*<th>Tác vụ</th>*@
+                <th>Tác vụ</th>
             </tr>
 
             @foreach (var baidang in Model)
@@ -36,10 +37,10 @@
 
                     <td>@baidang.trangThaiPhong</td>
                     <td>@baidang.trangThaiBaiDang</td>
-                    @*<td>
-                        <button class="btn btn_duyet">Duyệt bài</button>
-                        <button class="btn btn_huy">Hủy bài</button>
-                    </td>*@
+                    <td>
+                        @Html.ActionLink("Sửa Bài","SuaBaiDang",baidang,new { @class= "btn_sua"})
+                        <button class="btn_xoa">Xóa Bài</button>
+                    </td>
                 </tr>
             }
         </table>

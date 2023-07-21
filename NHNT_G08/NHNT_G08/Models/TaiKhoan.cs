@@ -19,6 +19,8 @@ namespace NHNT_G08.Models
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         public string matKhau { get; set; }
         public int maDmTaiKhoan { get; set; }
+        public string anhDaiDien { get; set; }
+        public string trangThai { get; set; }
 
         [NotMapped]
         public string tenLoaiTK { get; set; }

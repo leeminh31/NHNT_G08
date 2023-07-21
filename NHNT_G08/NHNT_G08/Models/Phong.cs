@@ -44,7 +44,7 @@ namespace NHNT_G08.Models
         [NotMapped]
         public string tenNguoiDang { get; set; }
         [NotMapped]
-        public int soSaoTrungBinh { get; set; }
+        public float soSaoTrungBinh { get; set; }
         [NotMapped]
         public int soLuotDanhGia { get; set; }
         [NotMapped]
