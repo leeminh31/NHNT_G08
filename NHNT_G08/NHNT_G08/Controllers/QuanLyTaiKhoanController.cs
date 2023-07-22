@@ -31,5 +31,22 @@ namespace NHNT_G08.Controllers
 
             return View(listTK);
         }
+
+        [HttpPost]
+        public async Task<bool> khoaTaiKhoan(int id)
+        {
+            try
+            {
+                var taikhoan = _context.tblTaiKhoan.Where(p => p.maTaiKhoan == id).First();
+                taikhoan.trangThai = "Khóa tài khoản";
+                _context.tblTaiKhoan.Update(taikhoan);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -21,16 +21,34 @@ namespace NHNT_G08.Controllers
         }
 
         // GET: bài đăng
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string timP, string timND)
         {
+
+
             var listBD = await _context.tblPhong.ToListAsync();
             foreach (var phong in listBD)
             {
                 var taiKhoan = _context.tblTaiKhoan.First(p => p.maTaiKhoan == phong.maTaiKhoan);
                 phong.tenNguoiDang = taiKhoan.hoTenNguoiDung;
             }
+            if (!String.IsNullOrEmpty(timP))
+            {
+                listBD = listBD.Where(s => s.tenPhong.Contains(timP)).ToList();
+                
+            }
+
+            if (!String.IsNullOrEmpty(timND))
+            {
+                
+                listBD = listBD.Where(s => s.tenNguoiDang.Contains(timND)).ToList();
+            }
 
             return View(listBD);
+
+
+            
+
+            
         }
 
         [HttpPost]
