@@ -1,4 +1,6 @@
-﻿@model NHNT_G08.Models.Phong
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@model NHNT_G08.Models.Phong
 
 @{
     ViewData["Title"] = "Chi Tiết Phòng";
@@ -62,15 +64,15 @@
                     <td class="tieude"><i class="fa-regular fa-face-smile"></i> Đánh Giá</td>
                     <td>
                         <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" @(Model.soSaoTrungBinh ==5 ? "checked" : "")/>
+                            <input type="radio" id="star5" name="rate" value="5" @(Model.soSaoTrungBinh == 5 ? "checked" : "") />
                             <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" @(Model.soSaoTrungBinh ==4 ? "checked" : "")/>
+                            <input type="radio" id="star4" name="rate" value="4" @(Model.soSaoTrungBinh == 4 ? "checked" : "") />
                             <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" @(Model.soSaoTrungBinh ==3 ? "checked" : "")/>
+                            <input type="radio" id="star3" name="rate" value="3" @(Model.soSaoTrungBinh == 3 ? "checked" : "") />
                             <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" @(Model.soSaoTrungBinh ==2 ? "checked" : "")/>
+                            <input type="radio" id="star2" name="rate" value="2" @(Model.soSaoTrungBinh == 2 ? "checked" : "") />
                             <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" @(Model.soSaoTrungBinh ==1 ? "checked" : "")/>
+                            <input type="radio" id="star1" name="rate" value="1" @(Model.soSaoTrungBinh == 1 ? "checked" : "") />
                             <label for="star1" title="text">1 star</label>
                         </div>
                     </td>
@@ -114,7 +116,7 @@
                     data: {
                         soSao: soSao,
                         maPhong: @Model.maPhong,
-                        maTaiKhoan:1,
+                        maTaiKhoan:@Convert.ToInt32(Accessor.HttpContext.Session.GetString("maTaiKhoan")),
                     },
                     success: function (result) {
                         result ? alert('Cảm Ơn Bạn Đã Đánh Giá') : alert('Lỗi Đánh Giá !')
