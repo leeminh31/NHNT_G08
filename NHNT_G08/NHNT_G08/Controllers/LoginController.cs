@@ -43,6 +43,7 @@ namespace NHNT_G08.Controllers
                 if (user != null)
                 {
                     //GaleL_Elliott@example.com | kbcwqbdadmor
+                    _httpContextAccessor.HttpContext.Session.SetString("maTaiKhoan", user.maTaiKhoan.ToString());
                     _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", user.tenDangNhap);
                     _httpContextAccessor.HttpContext.Session.SetString("hoTenNguoiDung", user.hoTenNguoiDung);
                     _httpContextAccessor.HttpContext.Session.SetString("maDmTaiKhoan", user.maDmTaiKhoan.ToString());
