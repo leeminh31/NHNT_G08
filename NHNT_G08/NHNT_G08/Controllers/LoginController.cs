@@ -43,10 +43,13 @@ namespace NHNT_G08.Controllers
                 if (user != null)
                 {
                     //GaleL_Elliott@example.com | kbcwqbdadmor
-                    _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", model.tenDangNhap);
+                    _httpContextAccessor.HttpContext.Session.SetString("maTaiKhoan", user.maTaiKhoan.ToString());
+                    _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", user.tenDangNhap);
+                    _httpContextAccessor.HttpContext.Session.SetString("hoTenNguoiDung", user.hoTenNguoiDung);
+                    _httpContextAccessor.HttpContext.Session.SetString("maDmTaiKhoan", user.maDmTaiKhoan.ToString());
 
 //++ mã tk ++ maDmTaiKhoan
-                    ViewBag.TenDangNhap = model.tenDangNhap;
+                    ViewBag.hoTenNguoiDung = user.hoTenNguoiDung;
                     return RedirectToAction("Index", "Home");
                     // return View("~/Views/Account/Login.cshtml");
                 }
@@ -66,6 +69,8 @@ namespace NHNT_G08.Controllers
         {
             await HttpContext.SignOutAsync();
             _httpContextAccessor.HttpContext.Session.Remove("tenDangNhap");
+            _httpContextAccessor.HttpContext.Session.Remove("hoTenNguoiDung");
+            _httpContextAccessor.HttpContext.Session.Remove("maDmTaiKhoan");
             return RedirectToAction("Index", "Home");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

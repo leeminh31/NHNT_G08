@@ -1,41 +1,52 @@
-﻿
-@model NHNT_G08.Models.TaiKhoan
+﻿@* @model NHNT_G08.Models.TaiKhoan *@
 @section Style {
-    <link rel="stylesheet" href="~/css/dangnhap.css" />
+    <link rel="stylesheet" href="~/css/dangki.css" />
 }
 <!-- Phần thân trang web -->
 <div class="main">
-    <div class="form_dangnhap">
-        <p class="form_dangnhap-title">Thông tin tài khoản</p>
-        <form asp-action="Login"  method="post">
-            <div class="form_dangnhap-item">
-                <label class="form_dangnhap-item-label" for="">Tên đăng nhập</label>
-                <input type="text" disabled name="taikhoan" id="taikhoan" class="form_dangnhap-item-input" placeholder="  Email">
-                @* <label id="dn_loi_email" style="margin-top: 10px; color: red"></label> *@
+    <div class="form_dangki ">
+        <p class="form_dangki-title">Thông tin tài khoản</p>
+        <form asp-controller="Register" asp-action="Register" method="post" class="row">
+            <div class="col-5 avatar">
+                <label class="form_dangki-item-label" for="">Ảnh đại diện</label>
+                <img src="@if(ViewBag.anhDaiDien != null) {@ViewBag.anhDaiDien}" alt="">
+                <br>
+                <input type="file" value="anhDaiDien" class="input_img">
+                <input type="button" class="btn" value="Đổi">
+                <input type="button" class="btn" value="Xóa">
             </div>
-            <div class="form_dangnhap-item">
-                <label class="form_dangnhap-item-label" for="">Họ tên</label>
-                <input type="text" name="hoten" id="hoten" class="form_dangnhap-item-input" placeholder="  Họ tên">
-                <label id="" style="margin-top: 10px; color: red"></label>
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form_dangki-item">
+                            <label class="form_dangki-item-label" for="">Tên đăng nhập</label>
+                            <input type="text" name="tenDangNhap" id="taikhoan" class="form_dangki-item-input" value="  @if(ViewBag.tenDangNhap != null) {@ViewBag.tenDangNhap}">
+                            @* <p id="dk_loi_email" style="margin-left: 170px; margin-top: 10px; color: red">lỗi</p> *@
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form_dangki-item">
+                            <label class="form_dangki-item-label" for="">Họ tên</label>
+                            <input type="text" name="hoTenNguoiDung" id="hoten" class="form_dangki-item-input" value="   @if(ViewBag.hoTenNguoiDung != null) {@ViewBag.hoTenNguoiDung}">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form_dangki-item">
+                            <label class="form_dangki-item-label" for="">Số điện thoại</label>
+                            <input type="text" name="soDienThoai" id="sdt" class="form_dangki-item-input" value="   @if(ViewBag.soDienThoai != null) {@ViewBag.soDienThoai}">
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="form_dangnhap-item">
-                <label class="form_dangnhap-item-label" for="">Số điện thoại</label>
-                <input type="text" name="soDienThoai" id="soDienThoai" class="form_dangnhap-item-input" placeholder="  Số điện thoại">
-                <label id="" style="margin-top: 10px; color: red"></label>
+            <div class="col-12">
+                <div class="form_dangki-btn">
+                    <br>
+                    <button type="submit" class="btn btn_dangki" id="btn_dangki">Cập nhật</button>
+                </div>
             </div>
-
-            @* <div class="form_dangnhap-show">
-                <input type="checkbox" class="">
-                <label class="form_dangnhap-item-label" for="">Hiện thị mật khẩu</label>
-
-            </div> *@
-
-            <div class="form_dangnhap-btn">
-                <button class="btn btn_dangnhap" type="submit" id="btn_dangnhap"> Cập nhật
-                </button>
-            </div>
-
         </form>
     </div>
 </div>

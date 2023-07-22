@@ -8,6 +8,8 @@
    
     <link rel="stylesheet" href="~/font-awesome-6-offline/css/all.css" />
     @RenderSection("Style")
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor httpContextAccessor
 </head>
 <body>
     <div id="web">
@@ -47,11 +49,12 @@
                     <li class="menu_list-item">
                         <a asp-action="BaiDangDaDanhGia" asp-controller="BaiDang" class="menu_list-item-link">ĐÁNH GIÁ</a>
                     </li>
-                    @if (ViewBag.TenDangNhap != null)
+                    
+                    @if (httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") != null)
                     {                    
                     <div class="menu_list-hot">                        
                         <p>
-                            Tài khoản: <a href="@Url.Action("Index", "Account")" class="tenDangNhap"><span> @ViewBag.TenDangNhap</span></a>
+                            Tài khoản: <a href="@Url.Action("Index", "Account")" class="tenDangNhap control_account"><span> @httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") </span></a>
                             <a href="@Url.Action("Logout", "Login")" class="dangxuat">| Đăng xuất</a>       
                         </p>
                         <p>
