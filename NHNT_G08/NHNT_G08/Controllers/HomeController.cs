@@ -14,14 +14,15 @@ namespace NHNT_G08.Controllers
     public class HomeController : Controller
     {
         private readonly NHNTContext _context;
-        public HomeController(NHNTContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public HomeController(NHNTContext context, IHttpContextAccessor httpContextAccessor)
         {
+            _httpContextAccessor = httpContextAccessor;
             _context = context;
         }
 
         public IActionResult Index(int? pageIndex)
         {
-            
             ViewBag.TenDangNhap = HttpContext.Session.GetString("tenDangNhap");
             int pageSize = 12;
             var listPhong = _context.tblPhong.Where(p=> string.Equals(p.trangThaiBaiDang, "Duyệt")).ToList();
@@ -36,7 +37,8 @@ namespace NHNT_G08.Controllers
         public IActionResult ChiTietPhong(int id)
         {
             var phong = _context.tblPhong.First(p => p.maPhong == id);
-            phong.soSaoTrungBinh = LayDanhGiaPhongTheoID(id);
+            var maTaiKhoan = Convert.ToInt32(HttpContext.Session.GetString("maTaiKhoan"));
+            phong.soSaoTrungBinh = LayDanhGiaPhongTheoID(id,maTaiKhoan);
             var listAnh = LayHinhAnhPhongTheoID(id);
             if ( listAnh.Count != 0 )
             {
@@ -53,14 +55,19 @@ namespace NHNT_G08.Controllers
             try
             {
                 var checkDanhGia = _context.tblDanhGiaPhong.FirstOrDefault(p => p.maPhong == maPhong && p.maTaiKhoan == maTaiKhoan);
-            checkDanhGia.soSao = soSao;
+                
             if (checkDanhGia != null)
             {
+                    checkDanhGia.soSao = soSao;
                 _context.Update(checkDanhGia);
             }
             else
             {
-                _context.tblDanhGiaPhong.Add(checkDanhGia);
+                    DanhGiaPhong danhGiaPhong = new DanhGiaPhong();
+                    danhGiaPhong.maPhong = maPhong;
+                    danhGiaPhong.maTaiKhoan = maTaiKhoan;
+                    danhGiaPhong.soSao = soSao;
+                _context.tblDanhGiaPhong.Add(danhGiaPhong);
             }
             _context.SaveChanges();
                 return true;
@@ -124,9 +131,9 @@ namespace NHNT_G08.Controllers
             return _context.tblHinhAnh.Where(p => p.maPhong == id).Select(p=> p.duongDan).ToList(); ;
         }
 
-        int LayDanhGiaPhongTheoID(int id)
+        int LayDanhGiaPhongTheoID(int id, int maTaiKhoan)
         {
-            return _context.tblDanhGiaPhong.Where(p => p.maPhong == id).Select(p=> p.soSao).FirstOrDefault();
+            return _context.tblDanhGiaPhong.Where(p => p.maPhong == id && p.maTaiKhoan == maTaiKhoan).Select(p=> p.soSao).FirstOrDefault();
         }
     }
 }
