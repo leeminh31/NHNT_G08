@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using NHNT_G08.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace NHNT_G08.Controllers
     public class BaiDangController : Controller
     {
         private readonly NHNTContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public BaiDangController(NHNTContext context)
+        public BaiDangController(NHNTContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -141,7 +144,7 @@ namespace NHNT_G08.Controllers
         public IActionResult BaiDangDaDanhGia(int? pageIndex)
         {
             int pageSize = 12;
-            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == 3).Select(p => p.maPhong).ToList();
+            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"))).Select(p => p.maPhong).ToList();
             var listPhong = _context.tblPhong.Where(p => listMaPhong.Contains(p.maPhong)).ToList();
             foreach (var phong in listPhong)
             {
@@ -164,7 +167,7 @@ namespace NHNT_G08.Controllers
         [HttpGet]
         public IActionResult BaiDaDang ()
         {
-            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == 1).ToList();
+            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"))).ToList();
             LayThongTinNguoiDang(listPhong);
             return View(listPhong);
         }

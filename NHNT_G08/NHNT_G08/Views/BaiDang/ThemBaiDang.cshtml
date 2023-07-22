@@ -1,4 +1,6 @@
-﻿@model NHNT_G08.Models.Phong
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@model NHNT_G08.Models.Phong
 
 @section Style {
     <link rel="stylesheet" href="~/css/thembaidang.css" />
@@ -16,7 +18,7 @@
             @if (string.Equals(ViewData["Title"].ToString(), "Sửa Bài Đăng"))
             {
                 <input asp-for="maPhong" type="hidden" />
-                <input asp-for="maTaiKhoan" type="hidden"/>
+                <input asp-for="maTaiKhoan" type="hidden" />
                 <input asp-for="trangThaiBaiDang" type="hidden" />
                 <div class="form-group">
                     <label asp-for="trangThaiPhong" class="control-label"></label>
@@ -32,7 +34,7 @@
             {
                 <input asp-for="trangThaiPhong" type="hidden" value="Còn Phòng" />
                 <input asp-for="trangThaiBaiDang" type="hidden" value="Chưa Duyệt" />
-                <input asp-for="maTaiKhoan" type="hidden" value=1 />
+                <input asp-for="maTaiKhoan" type="hidden" value=@Accessor.HttpContext.Session.GetString("maTaiKhoan") />
             }
 
 
@@ -53,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="files" class="control-label"></label>
-                <input asp-for="files" class="form-control" multiple/>
+                <input asp-for="files" class="form-control" multiple />
                 <span asp-validation-for="files" class="text-danger"></span>
             </div>
         </div>
@@ -93,7 +95,7 @@
                 </div>
             </div>
         </div>
-        
+
     </form>
 </div>
 
