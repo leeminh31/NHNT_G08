@@ -31,7 +31,7 @@ body{
     margin-left: 100px;
 }
 
-.menu_list-item, .menu_list-hot{
+.menu_list-item{
     position: relative;
     list-style: none;
     color:white;
@@ -41,6 +41,35 @@ body{
     cursor: pointer;
 }
 
+/* xu ly khi có tài khoản */
+
+.menu_list-hot p {
+    color: white;
+}
+
+.none {
+    display: none;
+}
+
+.control_account {
+    color: white;
+    text-decoration: none;
+}
+.control_account:hover {
+    color:rgb(91, 250, 58) ;
+    text-decoration:none;
+}
+
+.dangxuat, .tenDangNhap {
+   color: white;
+    text-decoration: none;
+}
+
+    .dangxuat:hover {
+        color:rgb(91, 250, 58);
+        text-decoration:none;
+    }
+/* ------------- */
 .menu_list-item:hover{
     color:  rgb(91, 250, 58);
 }
@@ -99,7 +128,7 @@ body{
 
 /* form */
 .form_dangki{
-    width: 900px;
+    width: 1300px;
     margin-top: 40px;
     margin: 0 auto;
     border: 2px solid rgb(91, 250, 58);
@@ -277,8 +306,10 @@ hr{
 
 .menu_list-hot p {
     color: white;
+    height: 10px;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
-
 .none {
     display: none;
 }
