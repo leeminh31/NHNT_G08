@@ -50,25 +50,32 @@
                         <a asp-action="BaiDangDaDanhGia" asp-controller="BaiDang" class="menu_list-item-link">ĐÁNH GIÁ</a>
                     </li>
                     
-                    @if (httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") != null)
-                    {                    
-                    <div class="menu_list-hot">                        
-                        <p>
-                            Tài khoản: <a href="@Url.Action("Index", "Account")" class="tenDangNhap control_account"><span> @httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") </span></a>
-                            <a href="@Url.Action("Logout", "Login")" class="dangxuat">| Đăng xuất</a>       
-                        </p>
-                        <p>
-                            <a href="" class="control_account">Quản lý tài khoản |</a>
-                            <a href="" class="control_account">Quản lý bài đăng</a>
-                        </p>
-                    </div>
-                    }else{
                         <li class="menu_list-item">
                         <a href="@Url.Action("Index", "Register")" class="menu_list-item-link">ĐĂNG KÍ</a>
                         </li>
                         <li class="menu_list-item">
                             <a href="@Url.Action("Index", "Login")" class="menu_list-item-link">ĐĂNG NHẬP</a>
                         </li>
+                    @if (httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") != null)
+                    {                    
+                    <div class="menu_list-hot">                        
+                        <p>
+                            
+                             
+                            <a href="@Url.Action("Index", "Account")" class="tenDangNhap control_account">
+                                <img src="@if(httpContextAccessor.HttpContext.Session.GetString("anhDaiDien") != null) {@httpContextAccessor.HttpContext.Session.GetString("anhDaiDien")}" alt="" style="width:40px;height: 40px; margin-top:-10px; border-radius: 50%">
+                                <span> @httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") </span>
+                                </a>
+                            <a href="@Url.Action("Logout", "Login")" class="dangxuat">| Đăng xuất</a>       
+                        </p>
+                        @if(httpContextAccessor.HttpContext.Session.GetString("maDmTaiKhoan") == "1"){
+                            
+                        <p style="margin-left: 52px;">
+                            <a href="" class="control_account">Quản lý tài khoản |</a>
+                            <a href="" class="control_account">Quản lý bài đăng</a>
+                        </p>
+                        }
+                    </div>
                     }
                 </ul>
             </div>

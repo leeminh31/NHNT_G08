@@ -42,14 +42,16 @@ namespace NHNT_G08.Controllers
                 var user = _context.tblTaiKhoan.SingleOrDefault(u => u.tenDangNhap == model.tenDangNhap && u.matKhau == model.matKhau);
                 if (user != null)
                 {
-                    //GaleL_Elliott@example.com | kbcwqbdadmor
                     _httpContextAccessor.HttpContext.Session.SetString("maTaiKhoan", user.maTaiKhoan.ToString());
                     _httpContextAccessor.HttpContext.Session.SetString("tenDangNhap", user.tenDangNhap);
                     _httpContextAccessor.HttpContext.Session.SetString("hoTenNguoiDung", user.hoTenNguoiDung);
                     _httpContextAccessor.HttpContext.Session.SetString("maDmTaiKhoan", user.maDmTaiKhoan.ToString());
+                    if(user.anhDaiDien != null)
+                        _httpContextAccessor.HttpContext.Session.SetString("anhDaiDien", Url.Content("~/img/anhdaidien/" + user.anhDaiDien));
+                    else 
+                        _httpContextAccessor.HttpContext.Session.SetString("anhDaiDien", Url.Content("~/img/anhdaidien/macdinh.jpg"));
 
-//++ mã tk ++ maDmTaiKhoan
-                    ViewBag.hoTenNguoiDung = user.hoTenNguoiDung;
+                    // ViewBag.hoTenNguoiDung = user.hoTenNguoiDung;
                     return RedirectToAction("Index", "Home");
                     // return View("~/Views/Account/Login.cshtml");
                 }
