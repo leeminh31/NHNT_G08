@@ -11,7 +11,7 @@
         <form asp-controller="Login" asp-action="Login" method="post">
             <div class="form_dangnhap-item">
                 <label class="form_dangnhap-item-label" for="">Tên tài khoản</label>
-                <input asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap" class="form_dangnhap-item-input" placeholder="  Email">
+                <input asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap" class="form_dangnhap-item-input" placeholder="  Tên đăng nhập">
                 <label asp-validation-for="tenDangNhap"  id="dn_loi_email" style="margin-top: 10px; color: red"></label>
             </div>
 
@@ -20,10 +20,6 @@
                 <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_dangnhap-item-input" placeholder="  Nhập mật khẩu">
                 <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
             </div>
-            @if (ViewBag.ten != null)
-            {
-                <div class="alert alert-danger">@ViewBag.ten</div>
-            }
 
 @* 
             <div class="form_dangnhap-show">

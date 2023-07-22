@@ -41,7 +41,7 @@ namespace NHNT_G08.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View(model);
+            return View("~/Views/Account/Register.cshtml", model);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [Route("Error")]
