@@ -2,6 +2,8 @@
 @section Style {
     <link rel="stylesheet" href="~/css/taikhoan.css" />
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
 <!-- Phần thân trang web -->
 <div class="main">
     <div class="form_taikhoan ">
@@ -9,7 +11,7 @@
         <form asp-controller="Account" asp-action="Update" enctype="multipart/form-data" method="post" class="row">
             <div class="col-5 avatar">
                 <label class="form_taikhoan-item-label" for="">Ảnh đại diện</label>
-                <img src="@if(ViewBag.anhDaiDien != null) {@ViewBag.anhDaiDien}" alt="">
+                <img src="@if(httpContextAccessor.HttpContext.Session.GetString("anhDaiDien") != null) {@httpContextAccessor.HttpContext.Session.GetString("anhDaiDien")}" alt="">
                 <br>
                 <div class="row">
                 @if (ViewBag.anhDaiDien != null)

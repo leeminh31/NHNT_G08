@@ -45,8 +45,7 @@ namespace NHNT_G08.Controllers
         public async Task<IActionResult> Update(TaiKhoan taiKhoan, IFormFile anhDaiDien)
         {
             var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
-            if (!string.IsNullOrEmpty(maTaiKhoan))
-            {
+            
                 if (ModelState.IsValid)
                 {
                     int maTaiKhoanInt = int.Parse(maTaiKhoan);
@@ -62,9 +61,6 @@ namespace NHNT_G08.Controllers
                     ViewBag.loi = "Vui lòng nhập đủ thông tin !";
                     return View("~/Views/Account/ChangePass.cshtml");
                 }
-            }else{
-                return RedirectToAction("Index", "Login");
-            }
 
             return RedirectToAction("Index", "ChangePass", taiKhoan);
         }

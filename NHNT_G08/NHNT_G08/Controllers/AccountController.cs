@@ -67,7 +67,7 @@ namespace NHNT_G08.Controllers
                             System.IO.File.Delete(oldfile);
                         }
                         string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhdaidien");
-                        string uniqueFileName = maTaiKhoan+".jpg";
+                        string uniqueFileName = user.tenDangNhap +".jpg";
                         string filePath = Path.Combine(uploadsPath, uniqueFileName);
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {
@@ -75,11 +75,13 @@ namespace NHNT_G08.Controllers
                         }
                         // Lưu tên tệp tin vào đối tượng taiKhoan
                         user.anhDaiDien = uniqueFileName;
+                        _httpContextAccessor.HttpContext.Session.SetString("anhDaiDien", Url.Content("~/img/anhdaidien/" + user.anhDaiDien));
                     }
 
                     user.hoTenNguoiDung = taiKhoan.hoTenNguoiDung;
                     user.soDienThoai = taiKhoan.soDienThoai;
                     
+                    // Lưu thông tin taiKhoan vào cơ sở dữ liệu
                     _context.tblTaiKhoan.Update(user);
                     _context.SaveChanges();
                 }

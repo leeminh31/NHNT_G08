@@ -14,31 +14,51 @@
             </div>
 
             <div class="form_changepass-item">
-                <label class="form_changepass-item-label" for="">Mật khẩu</label>
-                <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu">
+                <label class="form_changepass-item-label" for="">Mật khẩu cũ</label>
+                <input type="password" name="matKhauCu" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu cũ">
+                <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
+            </div>
+
+            <div class="form_changepass-item">
+                <label class="form_changepass-item-label" for="">Mật khẩu mới</label>
+                <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu mới">
                 <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
             </div>
             <div class="form_changepass-item">
-                <label class="form_changepass-item-label" for="" placeholder="RePassword">Nhập lại mật khẩu</label>
+                <label class="form_changepass-item-label" for="" placeholder="Nhập lại mật khẩu mới">Nhập lại mật khẩu mới</label>
                 <input type="password" name="nhaplai_matkhau" id="nhaplai_matkhau"
                     class="form_changepass-item-input" placeholder="  Nhập lại mật khẩu">
                 @* <p id="dk_loi_nlmk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
             </div>
-@* 
+
             <div class="form_changepass-show">
-                <input type="checkbox" class="">
-                <label class="form_changepass-item-label" for="">Hiện thị mật khẩu</label>
-
-            </div> *@
-
+                <input type="checkbox" id="hienThiMatKhau" class="">
+                <label class="form_changepass-item-label" for="hienThiMatKhau">Hiện thị mật khẩu</label>
+            </div>
             @if (ViewBag.loi != null)
             {
                 <div class="alert alert-danger">@ViewBag.loi</div>
             }
             <div class="form_changepass-btn">
-                <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass"> Đăng nhập
+                <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass"> Cập nhật
                 </button>
             </div>
         </form>
     </div>
 </div>
+<script>
+  const checkbox = document.getElementById("hienThiMatKhau");
+  
+  const matKhauInput = document.getElementById("matKhau");
+  const nlmatKhauInput = document.getElementById("nhaplai_matkhau");
+
+  checkbox.addEventListener("change", function() {
+    if (checkbox.checked) {
+      matKhauInput.type = "text";
+      nlmatKhauInput.type = "text";
+    } else {
+      matKhauInput.type = "password";
+      nlmatKhauInput.type = "password";
+    }
+  });
+</script>
