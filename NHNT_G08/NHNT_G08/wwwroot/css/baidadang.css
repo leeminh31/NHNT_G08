@@ -226,3 +226,18 @@ th {
         background-color: rgb(181, 30, 32);
         color: #fff;
     }
+
+
+.thembaidang {
+    text-decoration: none;
+    padding: 7px;
+    color: #fff;
+    background-color: #161E6D;
+    border-radius: 4px;
+
+}
+
+    .thembaidang:hover {
+        text-decoration: none;
+        color:#fff;
+    }

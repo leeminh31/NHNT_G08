@@ -23,136 +23,166 @@ namespace NHNT_G08.Controllers
         [HttpGet]
         public IActionResult ThemBaiDang()
         {
-            ViewData["Title"] = "Thêm Bài Đăng";
-            ViewData["Action"] = "ThemBaiDang";
-            ViewData["Btn_Value"] = "Tạo Mới"; 
-            return View();
+            var quyen = checkQuyen();
+            if (quyen)
+            {
+                ViewData["Title"] = "Thêm Bài Đăng";
+                ViewData["Action"] = "ThemBaiDang";
+                ViewData["Btn_Value"] = "Tạo Mới";
+                return View();
+            }
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         public IActionResult ThemBaiDang([Bind("tenPhong, diaChi, giaPhong, giaDien, giaNuoc, soDienThoai, chiTietPhong, trangThaiBaiDang, trangThaiPhong, maTaiKhoan,files, dienTich")] Phong phong)
         {
-            if (ModelState.IsValid)
+            var quyen = checkQuyen();
+            if (quyen)
             {
-                _context.Add(phong);
-                _context.SaveChanges();
-                var maPhong = phong.maPhong;
-                if (phong.files.Count > 0)
+                if (ModelState.IsValid)
                 {
-                    foreach (var file in phong.files)
-                    {
-
-                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
-
-                        //create folder if not exist
-                        if (!Directory.Exists(path))
-                            Directory.CreateDirectory(path);
-
-
-                        string fileNameWithPath = Path.Combine(path, file.FileName);
-
-                        using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-                        HinhAnh anh = new HinhAnh();
-                        anh.maPhong = maPhong;
-                        anh.duongDan = file.FileName;
-                        _context.tblHinhAnh.Add(anh);
-                    }
+                    _context.Add(phong);
                     _context.SaveChanges();
-                }
+                    var maPhong = phong.maPhong;
+                    if (phong.files.Count > 0)
+                    {
+                        foreach (var file in phong.files)
+                        {
 
-                return RedirectToAction("Index", "Home");
+                            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
+
+                            //create folder if not exist
+                            if (!Directory.Exists(path))
+                                Directory.CreateDirectory(path);
+
+
+                            string fileNameWithPath = Path.Combine(path, file.FileName);
+
+                            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                            {
+                                file.CopyTo(stream);
+                            }
+                            HinhAnh anh = new HinhAnh();
+                            anh.maPhong = maPhong;
+                            anh.duongDan = file.FileName;
+                            _context.tblHinhAnh.Add(anh);
+                        }
+                        _context.SaveChanges();
+                    }
+
+                    return RedirectToAction("BaiDaDang");
+                }
+                return View(phong);
             }
-            return View(phong);
+            return RedirectToAction("Index", "Login");     
         }
 
         [HttpGet]
         public IActionResult SuaBaiDang(Phong phong)
         {
-            ViewData["Title"] = "Sửa Bài Đăng";
-            ViewData["Btn_Value"] = "Sửa"; 
-            ViewData["Action"] = "SuaBaiDang";
-            return View("ThemBaiDang");
+            var quyen = checkQuyen();
+            if (quyen)
+            {
+                ViewData["Title"] = "Sửa Bài Đăng";
+                ViewData["Btn_Value"] = "Sửa";
+                ViewData["Action"] = "SuaBaiDang";
+                return View("ThemBaiDang");
+            }
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         public IActionResult SuaBaiDang(Phong phong, string unusedValue = "")
         {
-            if (ModelState.IsValid)
+            var quyen = checkQuyen();
+            if (quyen)
             {
-                _context.Update(phong);
-                var listAnh = _context.tblHinhAnh.Where(p => p.maPhong == phong.maPhong).ToList();
-                _context.tblHinhAnh.RemoveRange(listAnh);
-                _context.SaveChanges();
-                var maPhong = phong.maPhong;
-                if (phong.files.Count > 0)
+                if (ModelState.IsValid)
                 {
-                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
-
-                    //create folder if not exist
-                    if (!Directory.Exists(path))
-                        Directory.CreateDirectory(path);
-                    else
-                    {
-                        Directory.Delete(path,true);
-                        Directory.CreateDirectory(path);
-                    }
-
-                    foreach (var file in phong.files)
-                    {                                            
-                        string fileNameWithPath = Path.Combine(path, file.FileName);
-
-                        using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
-                        {
-                            file.CopyTo(stream);
-                        }
-                        HinhAnh anh = new HinhAnh();
-                        anh.maPhong = maPhong;
-                        anh.duongDan = file.FileName;
-                        _context.tblHinhAnh.Add(anh);
-                    }
+                    _context.Update(phong);
+                    var listAnh = _context.tblHinhAnh.Where(p => p.maPhong == phong.maPhong).ToList();
+                    _context.tblHinhAnh.RemoveRange(listAnh);
                     _context.SaveChanges();
-                }
+                    var maPhong = phong.maPhong;
+                    if (phong.files.Count > 0)
+                    {
+                        string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/anhphong_" + maPhong);
 
-                return RedirectToAction("Index", "Home");
+                        //create folder if not exist
+                        if (!Directory.Exists(path))
+                            Directory.CreateDirectory(path);
+                        else
+                        {
+                            Directory.Delete(path, true);
+                            Directory.CreateDirectory(path);
+                        }
+
+                        foreach (var file in phong.files)
+                        {
+                            string fileNameWithPath = Path.Combine(path, file.FileName);
+
+                            using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                            {
+                                file.CopyTo(stream);
+                            }
+                            HinhAnh anh = new HinhAnh();
+                            anh.maPhong = maPhong;
+                            anh.duongDan = file.FileName;
+                            _context.tblHinhAnh.Add(anh);
+                        }
+                        _context.SaveChanges();
+                    }
+
+                    return RedirectToAction("BaiDaDang");
+                }
+                return View(phong);
             }
-            return View(phong);
+            return RedirectToAction("Index", "Login");  
         }
 
         [HttpPost]
-        public bool XoaBaiDang ([FromForm] int maPhong)
+        public bool XoaBaiDang([FromForm] int maPhong)
         {
-            try
+            var quyen = checkQuyen();
+            if (quyen)
             {
-                var phong = _context.tblPhong.Find(maPhong);
-                var hinhAnhPhong = _context.tblHinhAnh.Where(p => p.maPhong == maPhong).ToList();
-                _context.tblPhong.Remove(phong);
-                _context.tblHinhAnh.RemoveRange(hinhAnhPhong);
-                _context.SaveChanges();
-                return true;
-            } catch
-            {
-                return false;
+                try
+                {
+                    var phong = _context.tblPhong.Find(maPhong);
+                    var hinhAnhPhong = _context.tblHinhAnh.Where(p => p.maPhong == maPhong).ToList();
+                    _context.tblPhong.Remove(phong);
+                    _context.tblHinhAnh.RemoveRange(hinhAnhPhong);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            
+            return false;
         }
 
 
         [HttpGet]
         public IActionResult BaiDangDaDanhGia(int? pageIndex)
         {
-            int pageSize = 12;
-            int maTaiKhoan = Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"));
-            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == maTaiKhoan).Select(p => p.maPhong).ToList();
-            var listPhong = _context.tblPhong.Where(p => listMaPhong.Contains(p.maPhong)).ToList();
-            foreach (var phong in listPhong)
+            var quyen = checkQuyen();
+            if (quyen)
             {
-                var soSao = _context.tblDanhGiaPhong.Where(p => p.maPhong == phong.maPhong && p.maTaiKhoan == maTaiKhoan).Select(p => p.soSao).First();
-                phong.soSaoTrungBinh = soSao;
+                int pageSize = 12;
+                int maTaiKhoan = Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"));
+                var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == maTaiKhoan).Select(p => p.maPhong).ToList();
+                var listPhong = _context.tblPhong.Where(p => listMaPhong.Contains(p.maPhong)).ToList();
+                foreach (var phong in listPhong)
+                {
+                    var soSao = _context.tblDanhGiaPhong.Where(p => p.maPhong == phong.maPhong && p.maTaiKhoan == maTaiKhoan).Select(p => p.soSao).First();
+                    phong.soSaoTrungBinh = soSao;
+                }
+                return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
             }
-            return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
+            return RedirectToAction("Index", "Login");
         }
 
         List<Phong> LayThongTinNguoiDang(List<Phong> listPhong)
@@ -166,12 +196,27 @@ namespace NHNT_G08.Controllers
         }
 
         [HttpGet]
-        public IActionResult BaiDaDang ()
+        public IActionResult BaiDaDang()
         {
-            var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"))).ToList();
-            LayThongTinNguoiDang(listPhong);
-            return View(listPhong);
+            var quyen = checkQuyen();
+            if (quyen)
+            {
+                var listPhong = _context.tblPhong.Where(p => p.maTaiKhoan == Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"))).ToList();
+                LayThongTinNguoiDang(listPhong);
+                return View(listPhong);
+            }
+            return RedirectToAction("Index", "Login");
+            
         }
 
+        public bool checkQuyen()
+        {
+            var maTaiKhoan = _httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan");
+            if (maTaiKhoan != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

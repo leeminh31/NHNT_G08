@@ -20,31 +20,11 @@
                 <ul class="menu_list">
                     <li class="menu_list-item">
                         <a asp-action="Index" asp-controller="Home" class="menu_list-item-link menu_list-item-nth1">TRANG CHỦ</a>
-                        <!-- <ul class="menu_list-item-sub">
-                            <li>
-                                <a href="#mienbac">MIỀN BẮC</a>
-                            </li>
-                            <li>
-                                <a href="#mientrung">MIỀN TRUNG</a>
-                            </li>
-                            <li>
-                                <a href="#miennam">MIỀN NAM</a>
-                            </li>
-                        </ul> -->
+                        
                     </li>
                     <li class="menu_list-item">
                         <a asp-action="BaiDaDang" asp-controller="BaiDang" class="menu_list-item-link">BÀI ĐĂNG</a>
-                        <!-- <ul class="menu_list-item-sub">
-                            <li>
-                                <a href="">MIỀN BẮC</a>
-                            </li>
-                            <li>
-                                <a href="">MIỀN TRUNG</a>
-                            </li>
-                            <li>
-                                <a href="">MIỀN NAM</a>
-                            </li>
-                        </ul> -->
+                        
                     </li>
                     <li class="menu_list-item">
                         <a asp-action="BaiDangDaDanhGia" asp-controller="BaiDang" class="menu_list-item-link">ĐÁNH GIÁ</a>
@@ -72,22 +52,15 @@
                         @if(httpContextAccessor.HttpContext.Session.GetString("maDmTaiKhoan") == "1"){
                             
                         <p style="margin-left: 52px;">
-                            <a href="" class="control_account">Quản lý tài khoản |</a>
-                            <a href="" class="control_account">Quản lý bài đăng</a>
+                            <a asp-controller="QuanLyTaiKhoan" asp-action="Index" class="control_account">Quản lý tài khoản |</a>
+                            <a asp-controller="QuanLyBaiDang" asp-action="Index" class="control_account">Quản lý bài đăng</a>
                         </p>
                         }
                     </div>
                     }
                 </ul>
             </div>
-            <!-- <div class="header_title">
-                <span class="header_title-item">
-                    <i>
-                        HỖ TRỢ TÌM PHÒNG TRỌ NHANH CHÓNG
-                    </i>
-
-                </span>
-            </div> -->
+            
 
         </header>
 

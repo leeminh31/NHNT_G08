@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,41 +15,40 @@ namespace NHNT_G08.Controllers
     {
         
         private readonly NHNTContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public QuanLyBaiDangController(NHNTContext context)
+        public QuanLyBaiDangController(NHNTContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: bài đăng
         public async Task<IActionResult> Index(string timP, string timND)
         {
+            var maTaiKhoan = _httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan");
+            if (maTaiKhoan != null && Convert.ToInt32(maTaiKhoan) == 1) {
+                var listBD = await _context.tblPhong.ToListAsync();
+                foreach (var phong in listBD)
+                {
+                    var taiKhoan = _context.tblTaiKhoan.First(p => p.maTaiKhoan == phong.maTaiKhoan);
+                    phong.tenNguoiDang = taiKhoan.hoTenNguoiDung;
+                }
+                if (!String.IsNullOrEmpty(timP))
+                {
+                    listBD = listBD.Where(s => s.tenPhong.Contains(timP)).ToList();
 
+                }
 
-            var listBD = await _context.tblPhong.ToListAsync();
-            foreach (var phong in listBD)
-            {
-                var taiKhoan = _context.tblTaiKhoan.First(p => p.maTaiKhoan == phong.maTaiKhoan);
-                phong.tenNguoiDang = taiKhoan.hoTenNguoiDung;
+                if (!String.IsNullOrEmpty(timND))
+                {
+
+                    listBD = listBD.Where(s => s.tenNguoiDang.Contains(timND)).ToList();
+                }
+
+                return View(listBD);
             }
-            if (!String.IsNullOrEmpty(timP))
-            {
-                listBD = listBD.Where(s => s.tenPhong.Contains(timP)).ToList();
-                
-            }
-
-            if (!String.IsNullOrEmpty(timND))
-            {
-                
-                listBD = listBD.Where(s => s.tenNguoiDang.Contains(timND)).ToList();
-            }
-
-            return View(listBD);
-
-
-            
-
-            
+            return View("~/Views/Account/Login.cshtml");
         }
 
         [HttpPost]

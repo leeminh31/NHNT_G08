@@ -108,20 +108,26 @@
 
             $('input[name=rate]').click(function () {
                 var soSao = $(this).val();
-                var result = confirm("Bạn có xác nhận đánh giá bài đăng này ?")
-                if (result == true) {
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("DanhGiaBaiDang")",
-                    data: {
-                        soSao: soSao,
-                        maPhong: @Model.maPhong,
-                        maTaiKhoan:@Convert.ToInt32(Accessor.HttpContext.Session.GetString("maTaiKhoan")),
-                    },
-                    success: function (result) {
-                        result ? alert('Cảm Ơn Bạn Đã Đánh Giá') : alert('Lỗi Đánh Giá !')
+                var maTaiKhoan = @Convert.ToInt32(Accessor.HttpContext.Session.GetString("maTaiKhoan"));
+                if (maTaiKhoan == "") {
+                    alert("Bạn cần đăng nhập để thực hiện chức năng này")
+                    window.location.href = "@Url.Action("Index","Login")"
+                } else {
+                    var result = confirm("Bạn có xác nhận đánh giá bài đăng này ?")
+                    if (result == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("DanhGiaBaiDang")",
+                        data: {
+                            soSao: soSao,
+                            maPhong: @Model.maPhong,
+                            maTaiKhoan:@Convert.ToInt32(Accessor.HttpContext.Session.GetString("maTaiKhoan")),
+                        },
+                        success: function (result) {
+                            result ? alert('Cảm Ơn Bạn Đã Đánh Giá') : alert('Lỗi Đánh Giá !')
+                        }
+                    });
                     }
-                });
                 }
             })
         })
