@@ -31,6 +31,7 @@ namespace NHNT_G08.Models
         public int giaNuoc { get; set; }
         [Display(Name = "Mô Tả Phòng")]
         public string chiTietPhong { get; set; }
+        [Display(Name = "Trạng Thái Phòng")]
         public string trangThaiPhong { get; set; }
         public string trangThaiBaiDang { get; set; }
         [Display(Name = "Số Điện Thoại")]

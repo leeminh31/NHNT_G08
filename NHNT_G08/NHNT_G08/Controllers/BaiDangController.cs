@@ -144,11 +144,12 @@ namespace NHNT_G08.Controllers
         public IActionResult BaiDangDaDanhGia(int? pageIndex)
         {
             int pageSize = 12;
-            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"))).Select(p => p.maPhong).ToList();
+            int maTaiKhoan = Convert.ToInt32(_httpContextAccessor.HttpContext.Session.GetString("maTaiKhoan"));
+            var listMaPhong = _context.tblDanhGiaPhong.Where(p => p.maTaiKhoan == maTaiKhoan).Select(p => p.maPhong).ToList();
             var listPhong = _context.tblPhong.Where(p => listMaPhong.Contains(p.maPhong)).ToList();
             foreach (var phong in listPhong)
             {
-                var soSao = _context.tblDanhGiaPhong.Where(p => p.maPhong == phong.maPhong).Select(p => p.soSao).First();
+                var soSao = _context.tblDanhGiaPhong.Where(p => p.maPhong == phong.maPhong && p.maTaiKhoan == maTaiKhoan).Select(p => p.soSao).First();
                 phong.soSaoTrungBinh = soSao;
             }
             return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
