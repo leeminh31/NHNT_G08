@@ -6,7 +6,7 @@
 body{
     padding: 0;
     margin: 0;
-    
+    font-family: 'Times New Roman', Times, serif;
 }
  
 .header{
@@ -33,12 +33,14 @@ body{
     position: relative;
     list-style: none;
     color:white;
-    font-size: 20px;
+    font-size: 18px;
     padding:0 50px;
     line-height: 100px;
     cursor: pointer;
 }
-
+.dangnhap{
+    color:rgb(91, 250, 58) !important;
+}
 /* xu ly khi có tài khoản */
 
 .menu_list-hot p {

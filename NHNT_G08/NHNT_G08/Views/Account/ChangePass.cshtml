@@ -1,0 +1,41 @@
+﻿@model NHNT_G08.Models.TaiKhoan
+@section Style {
+    <link rel="stylesheet" href="~/css/changepass.css" />
+}
+
+<!-- Phần thân trang web -->
+<div class="main">
+    <div class="form_changepass ">
+        <p class="form_changepass-title">Thay đổi mật khẩu</p>
+        <form asp-controller="ChangePass" asp-action="Update" enctype="multipart/form-data" method="post">
+            <div class="form_changepass-item">
+                <label class="form_changepass-item-label" for="">Tên tài khoản</label>
+                <input disabled asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap" class="form_changepass-item-input" value="@ViewBag.tenDangNhap">
+                <label asp-validation-for="tenDangNhap"  id="dn_loi_email" style="margin-top: 10px; color: red"></label>
+            </div>
+
+            <div class="form_changepass-item">
+                <label class="form_changepass-item-label" for="">Mật khẩu</label>
+                <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu">
+                <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
+            </div>
+            <div class="form_changepass-item">
+                <label class="form_changepass-item-label" for="" placeholder="RePassword">Nhập lại mật khẩu</label>
+                <input type="password" name="nhaplai_matkhau" id="nhaplai_matkhau"
+                    class="form_changepass-item-input" placeholder="  Nhập lại mật khẩu">
+                @* <p id="dk_loi_nlmk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
+            </div>
+
+            <div class="form_changepass-show">
+                <input type="checkbox" class="">
+                <label class="form_changepass-item-label" for="">Hiện thị mật khẩu</label>
+
+            </div>
+
+            <div class="form_changepass-btn">
+                <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass"> Đăng nhập
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

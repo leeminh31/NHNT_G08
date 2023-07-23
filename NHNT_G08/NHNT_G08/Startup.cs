@@ -116,6 +116,12 @@ namespace NHNT_G08
                     name: "Account",
                     pattern: "{controller=Account}/{action=Index}/{id?}");
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "ChangePass",
+                    pattern: "{controller=ChangePass}/{action=Index}/{id?}");
+            });
         }
     }
 }
