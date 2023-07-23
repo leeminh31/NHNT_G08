@@ -27,6 +27,7 @@ namespace NHNT_G08.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
+        private string message = string.Empty;
         [Route("Index")]
         public IActionResult Index()
         {
@@ -50,18 +51,24 @@ namespace NHNT_G08.Controllers
                     else 
                         _httpContextAccessor.HttpContext.Session.SetString("anhDaiDien", Url.Content("~/img/anhdaidien/macdinh.jpg"));
 
-                    // ViewBag.hoTenNguoiDung = user.hoTenNguoiDung;
                     return RedirectToAction("Index", "Home");
-                    // return View("~/Views/Account/Login.cshtml");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác.");
                     ViewBag.loi = "Tên đăng nhập hoặc mật khẩu không chính xác";
-                    // return View("~/Views/Account/Login.cshtml");
+                    
+                    // message = "Tên đăng nhập hoặc mật khẩu không chính xác";
+                    // SetAlert(message, 2);
+                    return View("~/Views/Account/Login.cshtml");
                 }
+            // return RedirectToAction("Index", "Login");
+            }else{
+                
+                ViewBag.loi = "Vui lòng nhập đủ thông tin !";
+                // message = "Vui lòng nhập đủ thông tin !";
+                // SetAlert(message, 3);
+                return View("~/Views/Account/Login.cshtml");
             }
-            return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
@@ -79,6 +86,26 @@ namespace NHNT_G08.Controllers
         public IActionResult Error()
         {
             return View("Error!");
+        }
+        protected void SetAlert(string message, int type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == 1)
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == 2)
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == 3)
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+            // else
+            // {
+            //     TempData["AlertType"] = "alert-info";
+            // }
         }
     }
 }

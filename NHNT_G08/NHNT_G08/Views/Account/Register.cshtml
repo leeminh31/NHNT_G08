@@ -64,6 +64,13 @@
                             <label class="form_dangki-item-label" for="">Hiện thị mật khẩu</label>
                         </div>
                     </div>
+                    
+                    @if (ViewBag.loi != null)
+                    {
+                        <div class="col-12">
+                            <div class="alert alert-danger">@ViewBag.loi</div>
+                        </div>
+                    }
                     <div class="col-12">
                         <div class="form_dangki-btn">
                             <button type="submit" class="btn btn_dangki" id="btn_dangki">Đăng kí</button>

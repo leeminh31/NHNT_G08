@@ -31,9 +31,9 @@ namespace NHNT_G08.Controllers
         public IActionResult Index()
         {
             var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
-            int maTaiKhoanInt = int.Parse(maTaiKhoan);
             if (maTaiKhoan != null)
             {
+                int maTaiKhoanInt = int.Parse(maTaiKhoan);
                 var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
                 //++ mã tk ++ maDmTaiKhoan
                 ViewBag.tenDangNhap = user.tenDangNhap;

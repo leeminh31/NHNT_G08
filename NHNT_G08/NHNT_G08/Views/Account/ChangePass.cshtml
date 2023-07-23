@@ -2,7 +2,6 @@
 @section Style {
     <link rel="stylesheet" href="~/css/changepass.css" />
 }
-
 <!-- Phần thân trang web -->
 <div class="main">
     <div class="form_changepass ">
@@ -25,13 +24,17 @@
                     class="form_changepass-item-input" placeholder="  Nhập lại mật khẩu">
                 @* <p id="dk_loi_nlmk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
             </div>
-
+@* 
             <div class="form_changepass-show">
                 <input type="checkbox" class="">
                 <label class="form_changepass-item-label" for="">Hiện thị mật khẩu</label>
 
-            </div>
+            </div> *@
 
+            @if (ViewBag.loi != null)
+            {
+                <div class="alert alert-danger">@ViewBag.loi</div>
+            }
             <div class="form_changepass-btn">
                 <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass"> Đăng nhập
                 </button>

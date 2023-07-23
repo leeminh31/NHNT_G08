@@ -45,6 +45,8 @@ body{
 
 .menu_list-hot p {
     color: white;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .none {
@@ -84,7 +86,8 @@ body{
 }
 
 .menu_list-hot{
-    margin-top: 30px;
+    font-size: 16px;
+    margin-top: 35px;
 }
 
 .menu_list-hotline{ 

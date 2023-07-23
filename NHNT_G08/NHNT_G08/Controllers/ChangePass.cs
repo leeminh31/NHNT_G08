@@ -1,16 +1,16 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NHNT_G08.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using NHNT_G08.Models;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System.IO;
-
 namespace NHNT_G08.Controllers
 {
     [Route("[controller]")]
@@ -37,8 +37,6 @@ namespace NHNT_G08.Controllers
                 var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
                 //++ mã tk ++ maDmTaiKhoan
                 ViewBag.tenDangNhap = user.tenDangNhap;
-            }else{
-                return RedirectToAction("Index", "Home");
             }
 
             return View("~/Views/Account/ChangePass.cshtml");
@@ -46,21 +44,28 @@ namespace NHNT_G08.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(TaiKhoan taiKhoan, IFormFile anhDaiDien)
         {
-            // if (ModelState.IsValid)
-            // {
-                var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
-                if (!string.IsNullOrEmpty(maTaiKhoan))
+            var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
+            if (!string.IsNullOrEmpty(maTaiKhoan))
+            {
+                if (ModelState.IsValid)
                 {
                     int maTaiKhoanInt = int.Parse(maTaiKhoan);
 
-                    var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);                 
+                    var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
 
                     user.matKhau = taiKhoan.matKhau;
-                    
+
                     _context.tblTaiKhoan.Update(user);
                     _context.SaveChanges();
+                }else
+                {
+                    ViewBag.loi = "Vui lòng nhập đủ thông tin !";
+                    return View("~/Views/Account/ChangePass.cshtml");
                 }
-            // return View("~/Views/Account/Account.cshtml");
+            }else{
+                return RedirectToAction("Index", "Login");
+            }
+
             return RedirectToAction("Index", "ChangePass", taiKhoan);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
