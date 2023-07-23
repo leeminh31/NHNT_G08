@@ -15,6 +15,7 @@ namespace NHNT_G08.Models
         [Required(ErrorMessage = "Vui lòng nhập tên tài khoản")]
         public string tenDangNhap { get; set; }
         public string soDienThoai { get; set; }
+        // [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         public string hoTenNguoiDung { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         public string matKhau { get; set; }

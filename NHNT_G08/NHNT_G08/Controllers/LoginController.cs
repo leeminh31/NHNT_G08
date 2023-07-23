@@ -30,7 +30,6 @@ namespace NHNT_G08.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            // ViewBag.TenDangNhap = HttpContext.Session.GetString("tenDangNhap");
             return View("~/Views/Account/Login.cshtml");
         }
         [HttpPost]

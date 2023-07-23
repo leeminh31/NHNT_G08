@@ -7,14 +7,11 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'Times New Roman', Times, serif;
- 
 }
  
 .header{
     background-image: none !important;
-    /* padding-top: 5% !important; */
 }
-
 .header_menu{
     background-color: #017fffcc;
     width: 100%;
@@ -41,10 +38,9 @@ body{
     line-height: 100px;
     cursor: pointer;
 }
-.dangki{
-    color:rgb(91, 250, 58)  !important;
+.changepass{
+    color:rgb(91, 250, 58) !important;
 }
-
 /* xu ly khi có tài khoản */
 
 .menu_list-hot p {
@@ -64,12 +60,12 @@ body{
     text-decoration:none;
 }
 
-.dangxuat, .tenDangNhap {
+.dangxuat, .changepass {
    color: white;
     text-decoration: none;
 }
 
-    .dangxuat:hover {
+    .dangxuat:hover, .changepass:hover  {
         color:rgb(91, 250, 58);
         text-decoration:none;
     }
@@ -131,62 +127,49 @@ body{
 }
 
 /* form */
-.form_dangki{
-    width: 1300px;
-    margin-top: 40px;
+.form_changepass{
+    width: 553px;
     margin: 0 auto;
+    margin-bottom: 80px;
+    margin-top: 30px;
+    position: relative;
     border: 2px solid rgb(91, 250, 58);
     padding: 40px;
-    margin-bottom: 50px;
-    margin-top: 30px;
 }
 
-
-.form_dangki-title{
+.form_changepass-title{
     text-align: center;
     color: rgb(47, 175, 22);
     font-size: 30px;
 }
 
-.form_dangki-item{
-    
-    padding: 10px 20px 10px 20px;
+.form_changepass-item{
+    width: 100%;
+    padding: 10px 30px 10px 30px;
 }
 
-.form_dangki-item-label{
+.form_changepass-item-label{
     font-size: 20px;
-    width: 80%;
+    width: 100%;
 }
 
-.form_dangki-item-input{
-    /* margin-left: 50px; */
+.form_changepass-item-input{
+    margin-left: 5px;
     width: 100%;
     height: 30px;
     border-radius: 5px;
 }
 
-.form_dangki-show{
-    margin-left: 20px;
-    margin-top: 45px;
-    padding-bottom: 30px;
+.form_changepass-show{
+    /* margin-left: 195px; */
+    padding-bottom: 20px;
 }
 
-/* #hoten{
-    margin-left: 105px;
-} */
-
-.linklogin{
-    
-    margin-left: 100px !important;
-    text-align: center;
-}
 #nhaplai_matkhau{
-    /* margin-left: 16px; */
+    /* margin-left: 19px; */
 }
 
-.form_dangki-btn{
-    margin-left: 35px;
-    width: 100%;
+.form_changepass-btn{
     text-align: center;
 }
 
@@ -203,13 +186,13 @@ body{
     cursor: pointer;
 }
 
-.form_dangki-btn{
+.form_changepass-btn{
     display: flex;
     justify-content: center;
 }
 
-
 /* footer */
+
 hr{
     display: block;
     height: 1px;
@@ -227,6 +210,7 @@ hr{
 }
 
 .footer{
+    
     display: flex;
     padding-bottom: 50px;
 }
@@ -245,95 +229,7 @@ hr{
     padding-left: 40px;
 }
 
-.row{
-    
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.col-1 {
-    width: 8.33%;
-  }
-  
-  .col-2 {
-    width: 16.66%;
-  }
-  
-  .col-3 {
-    width: 25%;
-  }
-  
-  .col-4 {
-    width: 33.33%;
-  }
-  
-  .col-5 {
-    width: 41.66%;
-  }
-  
-  .col-6 {
-    width: 50%;
-  }
-  
-  .col-7 {
-    width: 58.33%;
-  }
-  
-  .col-8 {
-    width: 66.66%;
-  }
-  
-  .col-9 {
-    width: 75%;
-  }
-  
-  .col-10 {
-    width: 83.33%;
-  }
-  
-  .col-11 {
-    width: 91.66%;
-  }
-  
-  .col-12 {
-    width: 100%;
-  }
-  
-.avatar img{
-    width: 85%;
-    padding: 10px;
-}
-.input_img{
-    padding: 10px;
-}
-/* xu ly khi có tài khoản */
-
-.menu_list-hot p {
-    color: white;
-    height: 10px;
-    padding-bottom: 0px !important;
-    margin-bottom: 0px !important;
-}
-.none {
-    display: none;
-}
-
-.control_account {
-    color: white;
-    text-decoration: none;
-}
-.control_account:hover {
-    color:rgb(91, 250, 58) ;
+.btn_changepass a{
     text-decoration:none;
+    color: #fff;
 }
-
-.dangxuat, .tenDangNhap {
-   color: white;
-    text-decoration: none;
-}
-
-    .dangxuat:hover {
-        color:rgb(91, 250, 58);
-        text-decoration:none;
-    }
-/* ------------- */

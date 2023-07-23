@@ -27,6 +27,11 @@
                 <label class="form_dangnhap-item-label" for="">Hiện thị mật khẩu</label>
 
             </div> *@
+            @if(ViewBag.loi != null){
+            {
+                <div class="alert alert-danger">@ViewBag.loi</div>
+            }
+            }
 
             <div class="form_dangnhap-btn">
                 <button class="btn btn_dangnhap" asp-action="Login" type="submit" id="btn_dangnhap"> Đăng nhập

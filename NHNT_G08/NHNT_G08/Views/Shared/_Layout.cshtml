@@ -51,10 +51,10 @@
                     </li>
                     
                         <li class="menu_list-item">
-                        <a href="@Url.Action("Index", "Register")" class="menu_list-item-link">ĐĂNG KÍ</a>
+                        <a href="@Url.Action("Index", "Register")" class="menu_list-item-link dangki">ĐĂNG KÍ</a>
                         </li>
                         <li class="menu_list-item">
-                            <a href="@Url.Action("Index", "Login")" class="menu_list-item-link">ĐĂNG NHẬP</a>
+                            <a href="@Url.Action("Index", "Login")" class="menu_list-item-link dangnhap">ĐĂNG NHẬP</a>
                         </li>
                     @if (httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") != null)
                     {                    
@@ -66,6 +66,7 @@
                                 <img src="@if(httpContextAccessor.HttpContext.Session.GetString("anhDaiDien") != null) {@httpContextAccessor.HttpContext.Session.GetString("anhDaiDien")}" alt="" style="width:40px;height: 40px; margin-top:-10px; border-radius: 50%">
                                 <span> @httpContextAccessor.HttpContext.Session.GetString("hoTenNguoiDung") </span>
                                 </a>
+                            <a href="@Url.Action("Index", "ChangePass")" class="changepass">| Đổi mật khẩu</a> 
                             <a href="@Url.Action("Logout", "Login")" class="dangxuat">| Đăng xuất</a>       
                         </p>
                         @if(httpContextAccessor.HttpContext.Session.GetString("maDmTaiKhoan") == "1"){

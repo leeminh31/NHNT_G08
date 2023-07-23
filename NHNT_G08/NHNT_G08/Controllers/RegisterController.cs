@@ -34,6 +34,7 @@ namespace NHNT_G08.Controllers
             {
                 // Thêm dữ liệu mới vào cơ sở dữ liệu
                 model.maDmTaiKhoan = 2;
+                model.trangThai = "Hoạt Động";
                 db.tblTaiKhoan.Add(model);
                 db.SaveChanges();
 
