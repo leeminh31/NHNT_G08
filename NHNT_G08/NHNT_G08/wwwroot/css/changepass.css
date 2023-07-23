@@ -148,12 +148,12 @@ body{
 
 .form_changepass-item{
     width: 100%;
-    padding: 10px 30px 10px 30px;
+    padding: 0px 30px 0px 30px;
 }
 
 .form_changepass-item-label{
     font-size: 20px;
-    width: 100%;
+    width: 80%;
 }
 
 .form_changepass-item-input{
@@ -168,10 +168,10 @@ body{
     padding-bottom: 20px;
 }
 
-#nhaplai_matkhau{
-    /* margin-left: 19px; */
+#hienThiMatKhau{
+    width: 5%;
+    margin-left: 30px;
 }
-
 .form_changepass-btn{
     text-align: center;
 }

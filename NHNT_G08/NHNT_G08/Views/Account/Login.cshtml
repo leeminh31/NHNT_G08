@@ -37,12 +37,11 @@
                 <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
             </div>
 
-            @*
+            
             <div class="form_dangnhap-show">
-            <input type="checkbox" class="">
-            <label class="form_dangnhap-item-label" for="">Hiện thị mật khẩu</label>
-
-            </div> *@
+                <input type="checkbox" id="hienThiMatKhau" class="">
+                <label class="form_dangnhap-item-label" for="hienThiMatKhau">Hiển thị mật khẩu</label>
+            </div>
             @if (ViewBag.loi != null)
             {
                 <div class="alert alert-danger">@ViewBag.loi</div>
@@ -58,3 +57,15 @@
         </form>
     </div>
 </div>
+<script>
+  const checkbox = document.getElementById("hienThiMatKhau");
+  const matKhauInput = document.getElementById("matKhau");
+
+  checkbox.addEventListener("change", function() {
+    if (checkbox.checked) {
+      matKhauInput.type = "text";
+    } else {
+      matKhauInput.type = "password";
+    }
+  });
+</script>
