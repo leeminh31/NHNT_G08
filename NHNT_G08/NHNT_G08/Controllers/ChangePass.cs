@@ -36,33 +36,49 @@ namespace NHNT_G08.Controllers
             {
                 var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
                 //++ mã tk ++ maDmTaiKhoan
-                ViewBag.tenDangNhap = user.tenDangNhap;
+                return View("~/Views/Account/ChangePass.cshtml",user);
+            }
+            return View("~/Views/Account/ChangePass.cshtml");
+        }
+
+        [Route("Index")]
+        [HttpPost]
+        public async Task<IActionResult> Update(TaiKhoan taiKhoan, IFormFile anhDaiDien, string matKhauCu, string nhaplai_matkhau)
+        {
+            var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
+            int maTaiKhoanInt = int.Parse(maTaiKhoan);
+
+            var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
+            ViewBag.tenDangNhap = user.tenDangNhap;
+
+            if (ModelState.IsValid)
+            {
+                if (!string.Equals(user.matKhau, matKhauCu))
+                {
+                    ViewBag.loi = "Mật Khẩu Cũ Sai";
+                    return View("~/Views/Account/ChangePass.cshtml",taiKhoan);
+                }
+                if (string.Equals(user.matKhau, taiKhoan.matKhau))
+                {
+                    ViewBag.loi = "Mật Khẩu Mới Phải Khác Mật Khẩu Cũ";
+                    return View("~/Views/Account/ChangePass.cshtml",taiKhoan);
+                }
+                if(!string.Equals(taiKhoan.matKhau, nhaplai_matkhau))
+                {
+                    ViewBag.loi = "Mật Khẩu Nhập Lại Giống Mật Khẩu Mới";
+                    return View("~/Views/Account/ChangePass.cshtml", taiKhoan);
+                }
+                user.matKhau = taiKhoan.matKhau;
+                _context.tblTaiKhoan.Update(user);
+                _context.SaveChanges();
+                ViewBag.ThanhCong = "Thay Đổi Mật Khẩu Thành Công";
+            }else
+            {
+                ViewBag.loi = "Vui lòng nhập đủ thông tin !";
+                return View("~/Views/Account/ChangePass.cshtml", taiKhoan);
             }
 
             return View("~/Views/Account/ChangePass.cshtml");
-        }
-        [HttpPost]
-        public async Task<IActionResult> Update(TaiKhoan taiKhoan, IFormFile anhDaiDien)
-        {
-            var maTaiKhoan = HttpContext.Session.GetString("maTaiKhoan");
-            
-                if (ModelState.IsValid)
-                {
-                    int maTaiKhoanInt = int.Parse(maTaiKhoan);
-
-                    var user = _context.tblTaiKhoan.SingleOrDefault(u => u.maTaiKhoan == maTaiKhoanInt);
-
-                    user.matKhau = taiKhoan.matKhau;
-
-                    _context.tblTaiKhoan.Update(user);
-                    _context.SaveChanges();
-                }else
-                {
-                    ViewBag.loi = "Vui lòng nhập đủ thông tin !";
-                    return View("~/Views/Account/ChangePass.cshtml");
-                }
-
-            return RedirectToAction("Index", "ChangePass", taiKhoan);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [Route("Error")]

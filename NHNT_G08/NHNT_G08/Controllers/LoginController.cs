@@ -79,6 +79,7 @@ namespace NHNT_G08.Controllers
             _httpContextAccessor.HttpContext.Session.Remove("tenDangNhap");
             _httpContextAccessor.HttpContext.Session.Remove("hoTenNguoiDung");
             _httpContextAccessor.HttpContext.Session.Remove("maDmTaiKhoan");
+            _httpContextAccessor.HttpContext.Session.Remove("maTaiKhoan");
             return RedirectToAction("Index", "Home");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

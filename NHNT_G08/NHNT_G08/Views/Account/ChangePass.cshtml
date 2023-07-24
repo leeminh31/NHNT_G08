@@ -9,38 +9,43 @@
         <form asp-controller="ChangePass" asp-action="Update" enctype="multipart/form-data" method="post">
             <div class="form_changepass-item">
                 <label class="form_changepass-item-label" for="">Tên tài khoản</label>
-                <input disabled asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap" class="form_changepass-item-input" value="@ViewBag.tenDangNhap">
-                <label asp-validation-for="tenDangNhap"  id="dn_loi_email" style="margin-top: 10px; color: red"></label>
+                <input readonly asp-for="tenDangNhap" id="tenDangNhap" class="form_changepass-item-input">
+                <span asp-validation-for="tenDangNhap" id="dn_loi_email" style="margin-top: 10px; color: red"></span>
             </div>
 
             <div class="form_changepass-item">
                 <label class="form_changepass-item-label" for="">Mật khẩu cũ</label>
-                <input type="password" name="matKhauCu" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu cũ">
-                <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
+                <input type="password" name="matKhauCu" class="form_changepass-item-input" placeholder="  Nhập mật khẩu cũ">
+                @*<span asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></span>*@
             </div>
 
             <div class="form_changepass-item">
                 <label class="form_changepass-item-label" for="">Mật khẩu mới</label>
                 <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_changepass-item-input" placeholder="  Nhập mật khẩu mới">
-                <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
+                @*<span asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></span>*@
             </div>
             <div class="form_changepass-item">
                 <label class="form_changepass-item-label" for="" placeholder="Nhập lại mật khẩu mới">Nhập lại mật khẩu mới</label>
                 <input type="password" name="nhaplai_matkhau" id="nhaplai_matkhau"
-                    class="form_changepass-item-input" placeholder="  Nhập lại mật khẩu">
-                @* <p id="dk_loi_nlmk" style="margin-left: 170px; margin-top: 10px; color: red"></p> *@
+                       class="form_changepass-item-input" placeholder="  Nhập lại mật khẩu">
+                @*<span asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></span>*@
             </div>
 
             <div class="form_changepass-show">
                 <input type="checkbox" id="hienThiMatKhau" class="">
-                <label class="form_changepass-item-label" for="hienThiMatKhau">Hiện thị mật khẩu</label>
+                <label class="form_changepass-item-label" for="hienThiMatKhau">Hiển thị mật khẩu</label>
             </div>
             @if (ViewBag.loi != null)
             {
                 <div class="alert alert-danger">@ViewBag.loi</div>
             }
+            @if (ViewBag.ThanhCong != null)
+            {
+                <div class="alert alert-success">Thay Đổi Mật Khẩu Thành Công</div>
+            }
             <div class="form_changepass-btn">
-                <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass"> Cập nhật
+                <button class="btn btn_changepass" asp-action="Update" type="submit" id="btn_changepass">
+                    Cập nhật
                 </button>
             </div>
         </form>

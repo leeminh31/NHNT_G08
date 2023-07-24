@@ -26,18 +26,18 @@
             <div class="form_dangnhap-item">
                 <label class="form_dangnhap-item-label" for="">Tên tài khoản</label>
                 <input asp-for="tenDangNhap" type="text" name="tenDangNhap" id="tenDangNhap"
-                    class="form_dangnhap-item-input" placeholder="  Tên đăng nhập">
+                       class="form_dangnhap-item-input" placeholder="  Tên đăng nhập">
                 <label asp-validation-for="tenDangNhap" id="dn_loi_email" style="margin-top: 10px; color: red"></label>
             </div>
 
             <div class="form_dangnhap-item">
                 <label class="form_dangnhap-item-label" for="">Mật khẩu</label>
                 <input asp-for="matKhau" type="password" name="matKhau" id="matKhau" class="form_dangnhap-item-input"
-                    placeholder="  Nhập mật khẩu">
+                       placeholder="  Nhập mật khẩu">
                 <p asp-validation-for="matKhau" id="dn_loi_mk" style="margin-top: 10px; color: red"></p>
             </div>
 
-            
+
             <div class="form_dangnhap-show">
                 <input type="checkbox" id="hienThiMatKhau" class="">
                 <label class="form_dangnhap-item-label" for="hienThiMatKhau">Hiển thị mật khẩu</label>
@@ -48,24 +48,31 @@
             }
 
             <div class="form_dangnhap-btn">
-                <button class="btn btn_dangnhap" asp-action="Login" type="submit" id="btn_dangnhap"> Đăng nhập
+                <button class="btn btn_dangnhap" asp-action="Login" type="submit" id="btn_dangnhap">
+                    Đăng nhập
                 </button>
             </div>
 
-            <label class="form_dangnhap-item-label" style="margin-left: 50px;" for="">Nếu bạn chưa có tài khoản, đăng kí
-                <a href="@Url.Action("Index", "Register")">tại đây</a></label>
+            <label class="form_dangnhap-item-label" style="margin-left: 50px;" for="">
+                Nếu bạn chưa có tài khoản, đăng kí
+                <a href="@Url.Action("Index", "Register")">tại đây</a>
+            </label>
         </form>
     </div>
 </div>
+@if (TempData["ThongBao"] != null)
+{
+<script type="text/javascript" charset="utf-8">alert('@Html.Raw(TempData["ThongBao"])');</script>
+}
 <script>
-  const checkbox = document.getElementById("hienThiMatKhau");
-  const matKhauInput = document.getElementById("matKhau");
+    const checkbox = document.getElementById("hienThiMatKhau");
+    const matKhauInput = document.getElementById("matKhau");
 
-  checkbox.addEventListener("change", function() {
-    if (checkbox.checked) {
-      matKhauInput.type = "text";
-    } else {
-      matKhauInput.type = "password";
-    }
-  });
+    checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+            matKhauInput.type = "text";
+        } else {
+            matKhauInput.type = "password";
+        }
+    });
 </script>

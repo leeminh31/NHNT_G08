@@ -162,6 +162,10 @@
 
 </div>
 
-@section Scripts {
 
+@section Scripts {
+    @if (TempData["ThongBao"] != null)
+    {
+        <script type="text/javascript" charset="utf-8">alert('@Html.Raw(TempData["ThongBao"])');</script>
+    }
 }

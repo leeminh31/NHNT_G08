@@ -31,6 +31,7 @@ namespace NHNT_G08.Controllers
                 ViewData["Btn_Value"] = "Tạo Mới";
                 return View();
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");
         }
 
@@ -75,6 +76,7 @@ namespace NHNT_G08.Controllers
                 }
                 return View(phong);
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");     
         }
 
@@ -89,6 +91,7 @@ namespace NHNT_G08.Controllers
                 ViewData["Action"] = "SuaBaiDang";
                 return View("ThemBaiDang");
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");
         }
 
@@ -138,30 +141,26 @@ namespace NHNT_G08.Controllers
                 }
                 return View(phong);
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");  
         }
 
         [HttpPost]
-        public bool XoaBaiDang([FromForm] int maPhong)
+        public string XoaBaiDang([FromForm] int maPhong)
         {
-            var quyen = checkQuyen();
-            if (quyen)
+            try
             {
-                try
-                {
-                    var phong = _context.tblPhong.Find(maPhong);
-                    var hinhAnhPhong = _context.tblHinhAnh.Where(p => p.maPhong == maPhong).ToList();
-                    _context.tblPhong.Remove(phong);
-                    _context.tblHinhAnh.RemoveRange(hinhAnhPhong);
-                    _context.SaveChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                var phong = _context.tblPhong.Find(maPhong);
+                var hinhAnhPhong = _context.tblHinhAnh.Where(p => p.maPhong == maPhong).ToList();
+                _context.tblPhong.Remove(phong);
+                _context.tblHinhAnh.RemoveRange(hinhAnhPhong);
+                _context.SaveChanges();
+                return "Xóa Thành Công";
             }
-            return false;
+            catch
+            {
+                return "Xảy Ra Lỗi Trong Quá Trình Xóa";
+            }
         }
 
 
@@ -182,6 +181,7 @@ namespace NHNT_G08.Controllers
                 }
                 return View(Pagination<Phong>.Create(listPhong, pageIndex ?? 1, pageSize));
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");
         }
 
@@ -205,6 +205,7 @@ namespace NHNT_G08.Controllers
                 LayThongTinNguoiDang(listPhong);
                 return View(listPhong);
             }
+            TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
             return RedirectToAction("Index", "Login");
             
         }

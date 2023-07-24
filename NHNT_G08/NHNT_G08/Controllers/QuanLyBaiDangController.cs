@@ -48,7 +48,16 @@ namespace NHNT_G08.Controllers
 
                 return View(listBD);
             }
-            return View("~/Views/Account/Login.cshtml");
+            else if (maTaiKhoan == null)
+            {
+                TempData["ThongBao"] = "Bạn Cần Đăng Nhập Để Thực Hiện Tác Vụ Này";
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                TempData["ThongBao"] = "Bạn Không Có Quyền Thực Hiện Tác Vụ Này";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]

@@ -105,6 +105,7 @@ namespace NHNT_G08.Controllers
             // }
             _context.tblTaiKhoan.Add(model);
             _context.SaveChanges();
+            TempData["ThongBao"] = "Đăng Ký Thành Công";
             // Redirect đến trang đăng nhập hoặc trang chủ
             return RedirectToAction("Index", "Login", model);
             
